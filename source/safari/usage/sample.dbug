@@ -1,0 +1,61 @@
+Loading Info From: sample_ag
+
+250.0 45.0 0.00 22.989 Na
+0.5 250 2.5 0.5
+1 f
+45.0 45 15.0
+1e-08 10.0
+0.3 0.0 1e-06
+12
+t
+5.0
+4000
+10.0 0.002
+0.0 0.0003
+2 100
+100
+0 0.040786 4.0786
+0 0.040786 4.0786
+666 2
+5.0 5.0
+4 1 0
+4153.6 3.625 27017.57 7.286
+2 0
+1.26 2.0
+300.0 0.9436337324 1
+f
+-1.5 8.1
+4.0786 4.0786 4.0786
+4
+1.0 1.0 1.0 1
+1.0 0.5 0.5 1
+0.5 1.0 0.5 1
+0.5 0.5 1.0 1
+1
+196.967 79 Au
+5.0 5.0 5.0
+t 1.5 10 2
+0 0 1 f 1 1 1
+0 0
+
+Loaded SAFIO
+Loaded Settings, Initializing Potentials and Temperatures
+Initializing Temperature
+Initialized Potentials, Building Lattice
+built lattice
+Printing Lattice
+Running Adaptive Grid
+Total Out of Phi  (-5): 669979
+Total Trapped     (-10): 0
+Total Stuck       (-100): 0
+Total Buried      (-200): 221504
+Total Froze       (-300): 175983
+Total OOB         (-400): 1534
+Total Errored     (-500): 0
+Total Intersected (-600): 0
+Total Out of Mask: 0
+
+Total number particles: 2129529
+Time per particle: 1.875ms
+
+Total Runtime: 3993s

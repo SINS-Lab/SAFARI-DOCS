@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAFARI Sample Output Files &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SAFARI Output Analysis" href="analysis.html" />
+    <link rel="prev" title="SAFARI Sample Input Files" href="input.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="analysis.html" title="SAFARI Output Analysis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="input.html" title="SAFARI Sample Input Files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI Sample Output Files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="safari-sample-output-files">
+<span id="safari-outputs"></span><h1>SAFARI Sample Output Files<a class="headerlink" href="#safari-sample-output-files" title="Permalink to this headline">¶</a></h1>
+<p>These files are generally tab separated. The location and name of these files is specified via the <code class="docutils literal notranslate"><span class="pre">-o</span></code> argument, or is the same as for the input files if not specified. For the purpose of readability, the tab characters in the below files have been replaced with two spaces.</p>
+<p>Production of <a class="reference internal" href="#spec-file"><span class="std std-ref">The .spec file</span></a> and <a class="reference internal" href="#data-file"><span class="std std-ref">The .data file</span></a> can be controlled via using <code class="docutils literal notranslate"><span class="pre">&lt;type&gt;</span></code> on line 44 of the main input file <a class="reference internal" href="input.html#main-input"><span class="std std-ref">Main Input File</span></a>. This option is a bitmask, with the following flags:</p>
+<ul class="simple">
+<li><p>1 - Enable <a class="reference internal" href="#data-file"><span class="std std-ref">The .data file</span></a> output</p></li>
+<li><p>2 - Enable <a class="reference internal" href="#spec-file"><span class="std std-ref">The .spec file</span></a> output</p></li>
+</ul>
+<p>These can be combined to produce both files, where <code class="docutils literal notranslate"><span class="pre">3</span></code> will do this.</p>
+<div class="section" id="the-data-file">
+<span id="data-file"></span><h2>The .data file<a class="headerlink" href="#the-data-file" title="Permalink to this headline">¶</a></h2>
+<p>This is the primary data output file, it will contain the final results of the trajectories, though normally will only contain the detectable particles, this can be adjusted via settings in the <a class="reference internal" href="input.html#main-input"><span class="std std-ref">input files</span></a>.</p>
+<p>Here is a sample <code class="docutils literal notranslate"><span class="pre">.data</span></code> file.</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">X0</span>  <span class="n">Y0</span>  <span class="n">Zm</span>  <span class="n">E</span>  <span class="n">THETA</span>  <span class="n">PHI</span>  <span class="n">ion</span> <span class="n">index</span>  <span class="n">weight</span>  <span class="n">max_n</span>  <span class="n">min_r</span>  <span class="n">steps</span>  <span class="n">Max</span> <span class="n">Error</span>  <span class="n">total</span> <span class="n">time</span>
+<span class="n">2</span><span class="p">.</span><span class="n">558862</span>  <span class="n">2</span><span class="p">.</span><span class="n">027624</span>  <span class="n">0</span><span class="p">.</span><span class="n">856</span>  <span class="n">180</span><span class="p">.</span><span class="n">633</span>  <span class="n">21</span><span class="p">.</span><span class="n">042</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">093</span>  <span class="n">80002</span>  <span class="n">1</span><span class="p">.</span><span class="n">000</span>  <span class="n">12</span>  <span class="n">0</span><span class="p">.</span><span class="n">910</span>  <span class="n">224</span>  <span class="n">0</span><span class="p">.</span><span class="n">185</span>  <span class="n">2</span><span class="p">.</span><span class="n">693</span>
+<span class="n">0</span><span class="p">.</span><span class="n">908598</span>  <span class="n">0</span><span class="p">.</span><span class="n">526922</span>  <span class="n">0</span><span class="p">.</span><span class="n">780</span>  <span class="n">213</span><span class="p">.</span><span class="n">365</span>  <span class="n">50</span><span class="p">.</span><span class="n">721</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">215</span>  <span class="n">60003</span>  <span class="n">1</span><span class="p">.</span><span class="n">000</span>  <span class="n">12</span>  <span class="n">1</span><span class="p">.</span><span class="n">068</span>  <span class="n">294</span>  <span class="n">0</span><span class="p">.</span><span class="n">027</span>  <span class="n">3</span><span class="p">.</span><span class="n">315</span>
+<span class="n">2</span><span class="p">.</span><span class="n">400500</span>  <span class="n">3</span><span class="p">.</span><span class="n">763921</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">583</span>  <span class="n">166</span><span class="p">.</span><span class="n">084</span>  <span class="n">29</span><span class="p">.</span><span class="n">615</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">379</span>  <span class="n">64494</span>  <span class="n">1</span><span class="p">.</span><span class="n">000</span>  <span class="n">12</span>  <span class="n">1</span><span class="p">.</span><span class="n">051</span>  <span class="n">764</span>  <span class="n">0</span><span class="p">.</span><span class="n">050</span>  <span class="n">6</span><span class="p">.</span><span class="n">353</span>
+<span class="n">1</span><span class="p">.</span><span class="n">174906</span>  <span class="n">2</span><span class="p">.</span><span class="n">147880</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">809</span>  <span class="n">18</span><span class="p">.</span><span class="n">778</span>  <span class="n">17</span><span class="p">.</span><span class="n">251</span>  <span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">131</span>  <span class="n">24671</span>  <span class="n">1</span><span class="p">.</span><span class="n">000</span>  <span class="n">12</span>  <span class="n">0</span><span class="p">.</span><span class="n">947</span>  <span class="n">1209</span>  <span class="n">0</span><span class="p">.</span><span class="n">372</span>  <span class="n">15</span><span class="p">.</span><span class="n">367</span>
+<span class="n">1</span><span class="p">.</span><span class="n">164306</span>  <span class="n">3</span><span class="p">.</span><span class="n">453702</span>  <span class="n">0</span><span class="p">.</span><span class="n">439</span>  <span class="n">196</span><span class="p">.</span><span class="n">119</span>  <span class="n">24</span><span class="p">.</span><span class="n">137</span>  <span class="p">-</span><span class="n">4</span><span class="p">.</span><span class="n">210</span>  <span class="n">24683</span>  <span class="n">1</span><span class="p">.</span><span class="n">000</span>  <span class="n">12</span>  <span class="n">1</span><span class="p">.</span><span class="n">081</span>  <span class="n">394</span>  <span class="n">0</span><span class="p">.</span><span class="n">038</span>  <span class="n">3</span><span class="p">.</span><span class="n">423</span>
+</pre></div>
+</td></tr></table></div>
+<p id="data-columns">The columns in this file are as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X0</span></code> - the initial, target x coordinate for the run</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y0</span></code> - the initial, target y coordinate for the run</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Zm</span></code> - the minimum z-coordinate of the projectile during the run</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> -  the final kinetic energy of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">THETA</span></code> - the exit angle theta of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PHI</span></code> - the exit angle phi of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ion</span> <span class="pre">index</span></code> - a unique index for this particular projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code> - In adaptive grid mode, this is the grid depth, otherwise is just 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_n</span></code> - Maximum number of particles considered for interaction for this projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_r</span></code> - Minimum distance this projectile got to another particle</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">steps</span></code> - Total number of integration steps required, if these numbers are significantly less than the <a class="reference internal" href="input.html#important-lines"><span class="std std-ref">maximum number of steps</span></a>, that value should probably be reduced in the <a class="reference internal" href="input.html#main-input"><span class="std std-ref">Main Input File</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">Error</span></code> - Maximum change in energy encountered by the projectile during any timestep</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">time</span></code> - Total trajctory time in SAFARI time units (<a class="reference internal" href="../index.html#id3"><span class="std std-ref">SAFARI Units</span></a>)</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="the-spec-file">
+<span id="spec-file"></span><h2>The .spec file<a class="headerlink" href="#the-spec-file" title="Permalink to this headline">¶</a></h2>
+<p>This file contains binned collections of the final detector positions of the various particles detected. This file starts with a header describing the energy and angle ranges contained in the file. It is then separated into blocks for each energy bin. For each block, there is a table of number of detections per angular bin. Each table has a header row and column with an approximate angle set for those bins, a more precise angle can be obtained from the information in the header.</p>
+<p>A sample of the header is below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--------------------------------------------------------</span>
+
+<span class="n">SAFARI</span> <span class="n">Spectra</span> <span class="n">File</span><span class="p">,</span> <span class="n">Ranges</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">file</span> <span class="n">are</span> <span class="k">as</span> <span class="n">follows</span><span class="p">:</span>
+<span class="n">Energy</span> <span class="nb">range</span><span class="p">:</span> <span class="mf">0.50</span> <span class="n">to</span> <span class="mf">250.00</span> <span class="n">eV</span>
+<span class="n">Theta</span> <span class="nb">range</span><span class="p">:</span> <span class="mf">0.00</span> <span class="n">to</span> <span class="mf">90.00</span> <span class="n">Degrees</span>
+<span class="n">Phi</span> <span class="nb">range</span><span class="p">:</span> <span class="o">-</span><span class="mf">15.00</span> <span class="n">to</span> <span class="mf">15.00</span> <span class="n">Degrees</span>
+
+<span class="n">This</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">split</span> <span class="n">into</span> <span class="n">blocks</span> <span class="k">for</span> <span class="n">each</span> <span class="n">energy</span> <span class="n">section</span>
+<span class="n">Each</span> <span class="n">block</span> <span class="n">contains</span> <span class="n">a</span> <span class="n">header</span> <span class="n">row</span> <span class="ow">and</span> <span class="n">column</span><span class="p">,</span> <span class="n">which</span> <span class="n">states</span>
+<span class="n">the</span> <span class="n">theta</span> <span class="ow">and</span> <span class="n">phi</span> <span class="n">angles</span> <span class="k">for</span> <span class="n">those</span> <span class="n">blocks</span> <span class="n">respectively</span>
+
+<span class="n">Total</span> <span class="n">Counts</span><span class="p">:</span> <span class="mi">7800</span>
+<span class="n">Largest</span> <span class="n">Bin</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">(</span><span class="mf">227.50</span><span class="n">eV</span><span class="p">,</span> <span class="n">Theta</span><span class="p">:</span> <span class="mf">73.0</span> <span class="n">Degrees</span><span class="p">,</span> <span class="n">Phi</span><span class="p">:</span> <span class="mf">12.3</span> <span class="n">Degrees</span><span class="p">)</span>
+
+<span class="o">--------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>This header contains the various ranges involved, as well as the total number of counts represented in the detector, as well as the bin containing the highest number of detections.</p>
+<p>The .spec file can be processed more easily for generating spectra than <a class="reference internal" href="#data-file"><span class="std std-ref">The .data file</span></a>, the size of this file also does not depend strongly on the number of trajectories simulated, so it can be used more easily for calibrating energies, angles, image charges, etc. If <a class="reference internal" href="#data-file"><span class="std std-ref">The .data file</span></a> output is disabled, a run can be set which generates this file for an arbitrarily long time, until there is a significant number of detections per bin, without consuming infeasibly large amounts of disk space.</p>
+</div>
+<div class="section" id="the-dbug-file">
+<span id="dbug-file"></span><h2>The .dbug file<a class="headerlink" href="#the-dbug-file" title="Permalink to this headline">¶</a></h2>
+<p>This file will contain general information about the run, and is to be used for assiting with configuration of some of the runtime parameters, such as error thresholds, etc.</p>
+<p>The file starts with a trimmed copy of the input file, similar to the one found at <a class="reference internal" href="input.html#raw-sample"><span class="std std-ref">Compact Input File</span></a>. It is then followed by some messages about runtime, and then some statistics about the various exit conditions encountered. It also included runtime information.</p>
+<p>Here is a sample <code class="docutils literal notranslate"><span class="pre">.dbug</span></code> file.</p>
+<div class="highlight-default notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">Loading</span> <span class="n">Info</span> <span class="n">From</span><span class="p">:</span> <span class="n">sample_ag</span>
+
+<span class="mf">250.0</span> <span class="mf">45.0</span> <span class="mf">0.00</span> <span class="mf">22.989</span> <span class="n">Na</span>
+<span class="mf">0.5</span> <span class="mi">250</span> <span class="mf">2.5</span> <span class="mf">0.5</span>
+<span class="mi">1</span> <span class="n">f</span>
+<span class="mf">45.0</span> <span class="mi">45</span> <span class="mf">15.0</span>
+<span class="mf">1e-08</span> <span class="mf">10.0</span>
+<span class="mf">0.3</span> <span class="mf">0.0</span> <span class="mf">1e-06</span>
+<span class="mi">12</span>
+<span class="n">t</span>
+<span class="mf">5.0</span>
+<span class="mi">4000</span>
+<span class="mf">10.0</span> <span class="mf">0.002</span>
+<span class="mf">0.0</span> <span class="mf">0.0003</span>
+<span class="mi">2</span> <span class="mi">100</span>
+<span class="mi">100</span>
+<span class="mi">0</span> <span class="mf">0.040786</span> <span class="mf">4.0786</span>
+<span class="mi">0</span> <span class="mf">0.040786</span> <span class="mf">4.0786</span>
+<span class="mi">666</span> <span class="mi">2</span>
+<span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="mi">4</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="mf">4153.6</span> <span class="mf">3.625</span> <span class="mf">27017.57</span> <span class="mf">7.286</span>
+<span class="mi">2</span> <span class="mi">0</span>
+<span class="mf">1.26</span> <span class="mf">2.0</span>
+<span class="mf">300.0</span> <span class="mf">0.9436337324</span> <span class="mi">1</span>
+<span class="n">f</span>
+<span class="o">-</span><span class="mf">1.5</span> <span class="mf">8.1</span>
+<span class="mf">4.0786</span> <span class="mf">4.0786</span> <span class="mf">4.0786</span>
+<span class="mi">4</span>
+<span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mf">1.0</span> <span class="mi">1</span>
+<span class="mf">1.0</span> <span class="mf">0.5</span> <span class="mf">0.5</span> <span class="mi">1</span>
+<span class="mf">0.5</span> <span class="mf">1.0</span> <span class="mf">0.5</span> <span class="mi">1</span>
+<span class="mf">0.5</span> <span class="mf">0.5</span> <span class="mf">1.0</span> <span class="mi">1</span>
+<span class="mi">1</span>
+<span class="mf">196.967</span> <span class="mi">79</span> <span class="n">Au</span>
+<span class="mf">5.0</span> <span class="mf">5.0</span> <span class="mf">5.0</span>
+<span class="n">t</span> <span class="mf">1.5</span> <span class="mi">10</span> <span class="mi">2</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">f</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span>
+<span class="mi">0</span> <span class="mi">0</span>
+
+<span class="n">Loaded</span> <span class="n">SAFIO</span>
+<span class="n">Loaded</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">Initializing</span> <span class="n">Potentials</span> <span class="ow">and</span> <span class="n">Temperatures</span>
+<span class="n">Initializing</span> <span class="n">Temperature</span>
+<span class="n">Initialized</span> <span class="n">Potentials</span><span class="p">,</span> <span class="n">Building</span> <span class="n">Lattice</span>
+<span class="n">built</span> <span class="n">lattice</span>
+<span class="n">Printing</span> <span class="n">Lattice</span>
+<span class="n">Running</span> <span class="n">Adaptive</span> <span class="n">Grid</span>
+<span class="n">Total</span> <span class="n">Out</span> <span class="n">of</span> <span class="n">Phi</span>  <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">):</span> <span class="mi">669979</span>
+<span class="n">Total</span> <span class="n">Trapped</span>     <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Total</span> <span class="n">Stuck</span>       <span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Total</span> <span class="n">Buried</span>      <span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">):</span> <span class="mi">221504</span>
+<span class="n">Total</span> <span class="n">Froze</span>       <span class="p">(</span><span class="o">-</span><span class="mi">300</span><span class="p">):</span> <span class="mi">175983</span>
+<span class="n">Total</span> <span class="n">OOB</span>         <span class="p">(</span><span class="o">-</span><span class="mi">400</span><span class="p">):</span> <span class="mi">1534</span>
+<span class="n">Total</span> <span class="n">Errored</span>     <span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Total</span> <span class="n">Intersected</span> <span class="p">(</span><span class="o">-</span><span class="mi">600</span><span class="p">):</span> <span class="mi">0</span>
+<span class="n">Total</span> <span class="n">Out</span> <span class="n">of</span> <span class="n">Mask</span><span class="p">:</span> <span class="mi">0</span>
+
+<span class="n">Total</span> <span class="n">number</span> <span class="n">particles</span><span class="p">:</span> <span class="mi">2129529</span>
+<span class="n">Time</span> <span class="n">per</span> <span class="n">particle</span><span class="p">:</span> <span class="mf">1.875</span><span class="n">ms</span>
+
+<span class="n">Total</span> <span class="n">Runtime</span><span class="p">:</span> <span class="mi">3993</span><span class="n">s</span>
+</pre></div>
+</td></tr></table></div>
+<p id="dbug-flags">Important to note in this file, are the error/exit conditions listed near the bottom (Lines 48-56 in the sample). These can be used for adjusting various input parameters for optimizing simulation runtime. The relevant exit conditions for adjusting input parameters are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Froze</span></code> - If this number is significant, you might consider increasing the maximum allowed timesteps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OOB</span></code> - This is how many left the edge of the crystal, if this is significant, you should increase the size of the generated crystal</p></li>
+</ul>
+<p>If the runtimes are unacceptably large, you can consider decreasing the number of allowed timesteps until the ratio which return as <code class="docutils literal notranslate"><span class="pre">Froze</span></code> becomes almost significant, likewise if memory use is too large, you can decrease the generated crystal size until the ratio returining <code class="docutils literal notranslate"><span class="pre">OOB</span></code> becomes significant.</p>
+<p>Exit conditions related to particles not being detectable are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Out</span> <span class="pre">of</span> <span class="pre">Phi</span></code> - This particle was not in plane with the detector and incoming beam, the thresholds on this can be set based on the detector window settings, on line 53 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Trapped</span></code> - The particle had left the surface, but was then re-trapped by the image potential</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stuck</span></code> - The particle went below the Stuck Energy threshold (See first value on line 219 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Buried</span></code> - The particle went more than the Buried Threshold below the surface (Second value on line 219 of the same file)</p></li>
+</ul>
+<p>The remaining exit conditions are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Errored</span></code> - The particle encountered a large discontinuity in energy</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Intersected</span></code> - The particle intersected with another atom</p></li>
+</ul>
+</div>
+<div class="section" id="the-crys-file">
+<span id="crys-files"></span><h2>The .crys file<a class="headerlink" href="#the-crys-file" title="Permalink to this headline">¶</a></h2>
+<p>After generating or loading the lattice, a <code class="docutils literal notranslate"><span class="pre">.crys</span></code> file will be generated with the initial, 0K state of the lattice. This file can be re-named to a <a class="reference internal" href="input.html#crys-in-files"><span class="std std-ref">.crys_in</span></a> file for providing as an external lattice if needed.</p>
+<p>This file is of identical format to the <a class="reference internal" href="input.html#crys-in-files"><span class="std std-ref">.crys_in</span></a> files, but here is a sample anyway:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span><span class="p">.</span><span class="n">000000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+</pre></div>
+</td></tr></table></div>
+<p>There is also a <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> formatted version of the file generated, for use in external visualizers such as VMD<span id="id1"><sup><a class="reference internal" href="../../index.html#id5">3</a></sup></span>. This file is suffixed with <code class="docutils literal notranslate"><span class="pre">.crys.xyz</span></code>, to separate it from the Single Shot mode files referenced <a class="reference internal" href="#xyz-output-file"><span class="std std-ref">below</span></a>.</p>
+<p>The corresponding such file to the above <code class="docutils literal notranslate"><span class="pre">.crys</span></code> file is below:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">10</span>
+
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="the-sptr-file">
+<h2>The .sptr file<a class="headerlink" href="#the-sptr-file" title="Permalink to this headline">¶</a></h2>
+<p>The inter-lattice force type mentioned around line 174 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input files</span></a> is a bitmask field. In the case where 16 (and montecarlo mode) or 32 is present in this bitmask, then SAFARI also produces a file containing surface atoms which have sputtered off. A sample such file is as follows:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">X0</span>  <span class="n">Y0</span>  <span class="n">Zm</span>  <span class="n">E</span>  <span class="n">THETA</span>  <span class="n">PHI</span>  <span class="n">ion</span> <span class="n">index</span>  <span class="n">ion</span> <span class="n">err</span> <span class="n">flag</span>  <span class="n">max_n</span>  <span class="n">min_r</span>  <span class="n">steps</span>  <span class="n">Max</span> <span class="n">Error</span>  <span class="n">total</span> <span class="n">time</span>
+<span class="n">5</span><span class="p">.</span><span class="n">422050</span>  <span class="n">1</span><span class="p">.</span><span class="n">807350</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">069</span>  <span class="n">88</span><span class="p">.</span><span class="n">375</span>  <span class="n">0</span><span class="p">.</span><span class="n">574</span>  <span class="n">60</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">2</span><span class="p">.</span><span class="n">121</span>  <span class="n">5876</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">47</span><span class="p">.</span><span class="n">775</span>
+<span class="n">1</span><span class="p">.</span><span class="n">807350</span>  <span class="n">1</span><span class="p">.</span><span class="n">807350</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">2</span><span class="p">.</span><span class="n">189</span>  <span class="n">15</span><span class="p">.</span><span class="n">694</span>  <span class="n">148</span><span class="p">.</span><span class="n">197</span>  <span class="n">60</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">0</span><span class="p">.</span><span class="n">935</span>  <span class="n">5876</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">47</span><span class="p">.</span><span class="n">775</span>
+<span class="n">3</span><span class="p">.</span><span class="n">614700</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">508</span>  <span class="n">78</span><span class="p">.</span><span class="n">522</span>  <span class="n">2</span><span class="p">.</span><span class="n">583</span>  <span class="n">0</span>  <span class="p">-</span><span class="n">200</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">1</span><span class="p">.</span><span class="n">149</span>  <span class="n">4637</span>  <span class="n">0</span><span class="p">.</span><span class="n">048</span>  <span class="n">36</span><span class="p">.</span><span class="n">343</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">8</span><span class="p">.</span><span class="n">899</span>  <span class="n">38</span><span class="p">.</span><span class="n">506</span>  <span class="p">-</span><span class="n">175</span><span class="p">.</span><span class="n">292</span>  <span class="n">44</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">0</span><span class="p">.</span><span class="n">942</span>  <span class="n">5771</span>  <span class="n">0</span><span class="p">.</span><span class="n">007</span>  <span class="n">46</span><span class="p">.</span><span class="n">643</span>
+<span class="n">7</span><span class="p">.</span><span class="n">229400</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">023</span>  <span class="n">74</span><span class="p">.</span><span class="n">856</span>  <span class="n">6</span><span class="p">.</span><span class="n">367</span>  <span class="n">64</span>  <span class="p">-</span><span class="n">200</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">2</span><span class="p">.</span><span class="n">111</span>  <span class="n">6040</span>  <span class="n">0</span><span class="p">.</span><span class="n">078</span>  <span class="n">45</span><span class="p">.</span><span class="n">892</span>
+<span class="n">5</span><span class="p">.</span><span class="n">422050</span>  <span class="n">5</span><span class="p">.</span><span class="n">422050</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">581</span>  <span class="n">81</span><span class="p">.</span><span class="n">854</span>  <span class="n">89</span><span class="p">.</span><span class="n">198</span>  <span class="n">24</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">1</span><span class="p">.</span><span class="n">967</span>  <span class="n">6831</span>  <span class="n">0</span><span class="p">.</span><span class="n">007</span>  <span class="n">58</span><span class="p">.</span><span class="n">582</span>
+<span class="n">3</span><span class="p">.</span><span class="n">614700</span>  <span class="n">3</span><span class="p">.</span><span class="n">614700</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">957</span>  <span class="n">24</span><span class="p">.</span><span class="n">905</span>  <span class="n">153</span><span class="p">.</span><span class="n">323</span>  <span class="n">24</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">0</span><span class="p">.</span><span class="n">934</span>  <span class="n">6831</span>  <span class="n">0</span><span class="p">.</span><span class="n">007</span>  <span class="n">58</span><span class="p">.</span><span class="n">582</span>
+<span class="n">5</span><span class="p">.</span><span class="n">422050</span>  <span class="n">3</span><span class="p">.</span><span class="n">614700</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">807</span>  <span class="n">2</span><span class="p">.</span><span class="n">110</span>  <span class="n">27</span><span class="p">.</span><span class="n">856</span>  <span class="n">82</span><span class="p">.</span><span class="n">301</span>  <span class="n">24</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">1</span><span class="p">.</span><span class="n">356</span>  <span class="n">6831</span>  <span class="n">0</span><span class="p">.</span><span class="n">007</span>  <span class="n">58</span><span class="p">.</span><span class="n">582</span>
+</pre></div>
+</td></tr></table></div>
+<p>The columns here are similar to <a class="reference internal" href="#data-columns"><span class="std std-ref">.data columns</span></a>, with a few differences as noted below:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">X0</span></code> - the 0 temperature x coordinate for the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Y0</span></code> - the 0 temperature y coordinate for the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Zm</span></code> - the 0 temperature z coordinate for the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> -  the final kinetic energy of the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">THETA</span></code> - the exit angle theta of the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PHI</span></code> - the exit angle phi of the atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ion</span> <span class="pre">index</span></code> - a unique index for the projectile which produced this sputter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">weight</span></code> - The error flag for the projectile (see <a class="reference internal" href="#dbug-flags"><span class="std std-ref">dbug flags</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_n</span></code> - Maximum number of particles considered for interaction for this atom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_r</span></code> - Minimum distance this atom got to another particle</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">steps</span></code> - Total number of integration steps for the ion that caused the sputter</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">Error</span></code> - Maximum change in energy encountered by the projectile during any timestep</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">total</span> <span class="pre">time</span></code> - Total trajctory time in SAFARI time units for the projectile (<a class="reference internal" href="../index.html#id3"><span class="std std-ref">SAFARI Units</span></a>)</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="single-shot-mode-files">
+<span id="ssm-files"></span><h2>Single Shot Mode Files<a class="headerlink" href="#single-shot-mode-files" title="Permalink to this headline">¶</a></h2>
+<p>In <a class="reference internal" href="usage.html#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a>, two additional files are generated, the <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file, and the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file.</p>
+<div class="section" id="the-traj-file">
+<h3>The .traj file<a class="headerlink" href="#the-traj-file" title="Permalink to this headline">¶</a></h3>
+<p>The primary output file from single shot mod is the <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file. This file contains a snapshot of the state of the projectile particle at each timestep of the simulation. This includes position, momentum, energy, timestep, and computed error.</p>
+<p>Here is a sample of such a file:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">x</span>  <span class="n">y</span>  <span class="n">z</span>  <span class="n">px</span>  <span class="n">py</span>  <span class="n">pz</span>  <span class="n">t</span>  <span class="n">n</span>  <span class="n">T</span>  <span class="n">V</span>  <span class="n">E</span>  <span class="n">near</span>  <span class="n">dt</span>  <span class="n">dr_max</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">10</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">438</span><span class="p">.</span><span class="n">140</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span>  <span class="n">1500</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1500</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span>  <span class="n">0</span><span class="p">.</span><span class="n">100000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">9</span><span class="p">.</span><span class="n">931529</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">438</span><span class="p">.</span><span class="n">140</span>  <span class="n">0</span><span class="p">.</span><span class="n">010000</span>  <span class="n">1</span>  <span class="n">1500</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1500</span><span class="p">.</span><span class="n">000</span>  <span class="n">10</span>  <span class="n">0</span><span class="p">.</span><span class="n">010000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>
+<span class="p">...</span> <span class="n">Many</span> <span class="n">omitted</span> <span class="n">lines</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">716291</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">566</span>  <span class="n">49</span><span class="p">.</span><span class="n">297234</span>  <span class="n">5999</span>  <span class="n">0</span><span class="p">.</span><span class="n">051</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">051</span>  <span class="n">10</span>  <span class="n">0</span><span class="p">.</span><span class="n">010000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">716692</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">566</span>  <span class="n">49</span><span class="p">.</span><span class="n">307234</span>  <span class="n">6000</span>  <span class="n">0</span><span class="p">.</span><span class="n">051</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">051</span>  <span class="n">10</span>  <span class="n">0</span><span class="p">.</span><span class="n">010000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>
+</pre></div>
+</td></tr></table></div>
+<p>The various columns in this file can be used to generate plots, which can then be used to characterize the trajectories, this gives basic information as to the number of significant interactions, how quickly the energy is lost, etc, during the simulation.</p>
+<p>The columns in this file are as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></code> - These three columns are the position of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">px</span> <span class="pre">py</span> <span class="pre">pz</span></code> - These three are the momentum of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code> - This is the total trajctory time so far (see <a class="reference internal" href="../index.html#id3"><span class="std std-ref">SAFARI Units</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n</span></code> - The current step, this is generally just an index of rows in the table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code> - The kinetic energy of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">V</span></code> - The total potential that the projectile is currently in</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">E</span></code> - T + V, the total energy of the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">near</span></code> - Number of lattice sites being considered for interaction</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dt</span></code> - Current timestep for the projectile</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dr_max</span></code> - maximum positional error encountered so far</p></li>
+</ul>
+<p>Plots of <code class="docutils literal notranslate"><span class="pre">T</span></code> vs <code class="docutils literal notranslate"><span class="pre">t</span></code> or <code class="docutils literal notranslate"><span class="pre">V</span></code> vs <code class="docutils literal notranslate"><span class="pre">t</span></code> can be used to gauge a general indication of the number of significant collisions which occur, as well as to get an indication of how well approximations such as the Single Binary Collision Approximation (SBCA) would apply to that particular trajectory type.</p>
+<div class="figure align-default" id="traj-qd-energy">
+<a class="reference internal image-reference" href="../../_images/traj_qd_energy.png"><img alt="Quasi Double Traj" src="../../_images/traj_qd_energy.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figure 10 </span><span class="caption-text">An example of a plot of <code class="docutils literal notranslate"><span class="pre">T</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, and <code class="docutils literal notranslate"><span class="pre">E</span></code> vs <code class="docutils literal notranslate"><span class="pre">t</span></code>, where the time has be converted to fs. This shows two distinct collisions of the projectile.</span><a class="headerlink" href="#traj-qd-energy" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="the-xyz-files">
+<span id="xyz-output-file"></span><h3>The .xyz files<a class="headerlink" href="#the-xyz-files" title="Permalink to this headline">¶</a></h3>
+<p>This file is produced for the purpose of generating videos of the trajctory via external software such as VMD. A sample of such a file is below:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">11</span>
+<span class="n">0</span>
+<span class="n">Na</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">10</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">438</span><span class="p">.</span><span class="n">140</span>  <span class="n">63</span><span class="p">.</span><span class="n">989</span>  <span class="n">0</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">1</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">2</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">3</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">4</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">5</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">6</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">3</span><span class="p">.</span><span class="n">900</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">7</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">8</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">9</span>  <span class="n">0</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">900</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">10</span>  <span class="n">0</span>
+<span class="n">11</span>
+<span class="n">0</span><span class="p">.</span><span class="n">01</span>
+<span class="n">Na</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">9</span><span class="p">.</span><span class="n">932</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">438</span><span class="p">.</span><span class="n">140</span>  <span class="n">63</span><span class="p">.</span><span class="n">989</span>  <span class="n">0</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">1</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">2</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">3</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">4</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">5</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">6</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">3</span><span class="p">.</span><span class="n">900</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">7</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">0</span><span class="p">.</span><span class="n">001</span>  <span class="n">0</span><span class="p">.</span><span class="n">016</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">8</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">001</span>  <span class="n">0</span><span class="p">.</span><span class="n">016</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">9</span>  <span class="n">1</span>
+<span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">900</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800</span>  <span class="n">0</span><span class="p">.</span><span class="n">000</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">0</span><span class="p">.</span><span class="n">008</span>  <span class="n">63</span><span class="p">.</span><span class="n">546</span>  <span class="n">10</span>  <span class="n">1</span>
+</pre></div>
+</td></tr></table></div>
+<p>Here is a sample of a video produced by VMD from an output <cite>.xyz</cite> file from a single shot run.</p>
+<img alt="../../_images/7-body.gif" src="../../_images/7-body.gif" />
+<div class="section" id="some-additions-to-this-file">
+<h4>Some additions to this file<a class="headerlink" href="#some-additions-to-this-file" title="Permalink to this headline">¶</a></h4>
+<p>The timestamp for the frame is added as the “comment” line</p>
+<p>Additional columns are added to this file from the standard files:</p>
+<ol class="arabic simple" start="4">
+<li><p>x-component of momentum</p></li>
+<li><p>y-component of momentum</p></li>
+<li><p>z-component of momentum</p></li>
+<li><p>Mass of the particle (useful for isotope considerations)</p></li>
+<li><p>Index of the particle (used to sort/cleanup xyz afterwards)</p></li>
+<li><p>Interaction status, this is 0 or 1, depending on if the particle is in interaction range of the projectile</p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory behind SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Running SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">SAFARI Sample Input Files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SAFARI Sample Output Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-data-file">The .data file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-spec-file">The .spec file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-dbug-file">The .dbug file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-crys-file">The .crys file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-sptr-file">The .sptr file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-shot-mode-files">Single Shot Mode Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SAFARI Sample Output Files</a><ul>
+<li><a class="reference internal" href="#the-data-file">The .data file</a></li>
+<li><a class="reference internal" href="#the-spec-file">The .spec file</a></li>
+<li><a class="reference internal" href="#the-dbug-file">The .dbug file</a></li>
+<li><a class="reference internal" href="#the-crys-file">The .crys file</a></li>
+<li><a class="reference internal" href="#the-sptr-file">The .sptr file</a></li>
+<li><a class="reference internal" href="#single-shot-mode-files">Single Shot Mode Files</a><ul>
+<li><a class="reference internal" href="#the-traj-file">The .traj file</a></li>
+<li><a class="reference internal" href="#the-xyz-files">The .xyz files</a><ul>
+<li><a class="reference internal" href="#some-additions-to-this-file">Some additions to this file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="input.html"
+                        title="previous chapter">SAFARI Sample Input Files</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="analysis.html"
+                        title="next chapter">SAFARI Output Analysis</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="analysis.html" title="SAFARI Output Analysis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="input.html" title="SAFARI Sample Input Files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI Sample Output Files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

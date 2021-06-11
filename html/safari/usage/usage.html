@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Running SAFARI &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SAFARI Sample Input Files" href="input.html" />
+    <link rel="prev" title="Building SAFARI" href="building.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="input.html" title="SAFARI Sample Input Files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="building.html" title="Building SAFARI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running SAFARI</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="running-safari">
+<span id="safari-running"></span><h1>Running SAFARI<a class="headerlink" href="#running-safari" title="Permalink to this headline">¶</a></h1>
+<p>SAFARI is a command line application, and has no graphical user interaction. Adaptive grid mode does have a commandline indication of progress for the first thermal iteration, but otherwise there is no direct progress information for the run until it has finished running.</p>
+<div class="section" id="required-input-files">
+<h2>Required Input Files<a class="headerlink" href="#required-input-files" title="Permalink to this headline">¶</a></h2>
+<p>Most of the configuration options for SAFARI are provided via a primary input file, there are then some optional additional files, which are used depending on the command line arguments, or options in the main input file.</p>
+<p>An sample input file can be located at <a class="reference internal" href="input.html#main-input"><span class="std std-ref">Main Input File</span></a>.</p>
+<div class="section" id="optional-input-files">
+<h3>Optional Input Files<a class="headerlink" href="#optional-input-files" title="Permalink to this headline">¶</a></h3>
+<p>Other optional files include:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="input.html#pots-files"><span class="std std-ref">External Potentials File</span></a> for providing potentials from a table rather than built in methods</p></li>
+<li><p><a class="reference internal" href="input.html#crys-in-files"><span class="std std-ref">External Crystal File</span></a> for providing externally generated surfaces, rather than auto-generating the surface</p></li>
+</ul>
+<div class="section" id="produced-output-files">
+<h4>Produced Output Files<a class="headerlink" href="#produced-output-files" title="Permalink to this headline">¶</a></h4>
+<p>SAFARI outputs the data in a plain-text format, the specific files produced depend on the <a class="reference internal" href="#safari-modes"><span class="std std-ref">run mode</span></a>. More information about the produced files is discussed in <a class="reference internal" href="output.html#safari-outputs"><span class="std std-ref">SAFARI Sample Output Files</span></a>, and general analysis of these files is discussed in <a class="reference internal" href="analysis.html#safari-analysis"><span class="std std-ref">SAFARI Output Analysis</span></a>.</p>
+</div>
+<div class="section" id="command-line-arguments">
+<span id="cmd-args"></span><h4>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this headline">¶</a></h4>
+<dl class="option-list">
+<dt><kbd><span class="option">-i <var>file</var></span></kbd></dt>
+<dd><p>Sets the <a class="reference internal" href="input.html#main-input"><span class="std std-ref">Main Input File</span></a> to <code class="docutils literal notranslate"><span class="pre">file.input</span></code>. If this argument is not present, it will look in a file called <code class="docutils literal notranslate"><span class="pre">safari.input</span></code>, and attempt to read this argument from there</p>
+</dd>
+<dt><kbd><span class="option">-o <var>file</var></span></kbd></dt>
+<dd><p>Sets the name of the various output files, if not present, uses the same as input</p>
+</dd>
+<dt><kbd><span class="option">-t <var>temperature</var></span></kbd></dt>
+<dd><p>Sets the temperature for the run</p>
+</dd>
+<dt><kbd><span class="option">-n <var>number</var></span></kbd></dt>
+<dd><p>Sets the number of runs (trajectories in <a class="reference internal" href="#monte-carlo-mode"><span class="std std-ref">Monte Carlo</span></a>, Thermal Iteration in <a class="reference internal" href="#adaptive-grid-mode"><span class="std std-ref">Adaptive Grid</span></a>)</p>
+</dd>
+<dt><kbd><span class="option">-e <var>Energy</var></span></kbd></dt>
+<dd><p>Sets the initial energy (E0)</p>
+</dd>
+<dt><kbd><span class="option">-p <var>file</var></span></kbd></dt>
+<dd><p>Enables loading external potentials from <code class="docutils literal notranslate"><span class="pre">file.pots</span></code></p>
+</dd>
+<dt><kbd><span class="option">-s</span></kbd></dt>
+<dd><p>Forces the run to be in <a class="reference internal" href="#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a></p>
+</dd>
+<dt><kbd><span class="option">-x <var>number</var></span></kbd></dt>
+<dd><p>x target for <a class="reference internal" href="#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a></p>
+</dd>
+<dt><kbd><span class="option">-y <var>number</var></span></kbd></dt>
+<dd><p>y target for <a class="reference internal" href="#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a></p>
+</dd>
+<dt><kbd><span class="option">-r</span></kbd></dt>
+<dd><p>restricted <a class="reference internal" href="#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a>, only will output nearby lattice sites</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="command-line-examples">
+<h3>Command Line examples<a class="headerlink" href="#command-line-examples" title="Permalink to this headline">¶</a></h3>
+<p>Here are a few examples of commands to use for running SAFARI, in the following examples, the safari executable is <code class="docutils literal notranslate"><span class="pre">Sea-Safari</span></code>, which is the name of the executable produced via the instructions in <a class="reference internal" href="building.html#safari-build"><span class="std std-ref">Building SAFARI</span></a>.</p>
+<p>The following will use <code class="docutils literal notranslate"><span class="pre">./sample.input</span></code> for the <a class="reference internal" href="input.html#main-input"><span class="std std-ref">Main Input File</span></a>, and produce output files in <code class="docutils literal notranslate"><span class="pre">./tests/</span></code>, with names starting with <code class="docutils literal notranslate"><span class="pre">sample</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./Sea-Safari -i sample -o tests/sample
+</pre></div>
+</div>
+<p>The example below will use the same input and output files as the above, however will do a single-shot run at the origin:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>./Sea-Safari -i sample -o tests/sample -s -x <span class="m">0</span> -y <span class="m">0</span>
+</pre></div>
+</div>
+<div class="section" id="safari-modes">
+<span id="id1"></span><h4>SAFARI Modes<a class="headerlink" href="#safari-modes" title="Permalink to this headline">¶</a></h4>
+<p>SAFARI has multiple modes it can run in, these are as follows:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#monte-carlo-mode"><span class="std std-ref">Monte Carlo</span></a></p></li>
+<li><p><a class="reference internal" href="#fixed-grid"><span class="std std-ref">Fixed Grid</span></a></p></li>
+<li><p><a class="reference internal" href="#adaptive-grid-mode"><span class="std std-ref">Adaptive Grid</span></a></p></li>
+<li><p><a class="reference internal" href="#chain-mode"><span class="std std-ref">Chain Mode</span></a></p></li>
+<li><p><a class="reference internal" href="#single-shot-mode"><span class="std std-ref">Single Shot Mode</span></a></p></li>
+</ul>
+<p>These modes, and how to enable them will be discussed below.</p>
+</div>
+</div>
+<div class="section" id="monte-carlo">
+<span id="monte-carlo-mode"></span><h3>Monte Carlo<a class="headerlink" href="#monte-carlo" title="Permalink to this headline">¶</a></h3>
+<p>Monte Carlo selects random sites on the surface, and fires projectiles at it. This mode is enabled by setting <code class="docutils literal notranslate"><span class="pre">SCAT_TYPE</span></code> to <code class="docutils literal notranslate"><span class="pre">666</span></code>, see line 143 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>.</p>
+<p>In this mode, the run number (line 106 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>) is the number of such particles fired, and it is evenly distributed over the specified surface (lines 119, 122 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>).</p>
+</div>
+<div class="section" id="fixed-grid">
+<span id="id2"></span><h3>Fixed Grid<a class="headerlink" href="#fixed-grid" title="Permalink to this headline">¶</a></h3>
+<p>This mode is enabled by setting <code class="docutils literal notranslate"><span class="pre">SCAT_TYPE</span></code> to <code class="docutils literal notranslate"><span class="pre">777</span></code>, see line 143 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>.</p>
+<p>In this mode, the trajectories are made via a raster scan across the surface, where it scans in the step sizes specified on lines 119 and 122 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>. In this mode, the run number is ignored.</p>
+</div>
+<div class="section" id="adaptive-grid">
+<span id="adaptive-grid-mode"></span><h3>Adaptive Grid<a class="headerlink" href="#adaptive-grid" title="Permalink to this headline">¶</a></h3>
+<p>This is similar to <a class="reference internal" href="#fixed-grid"><span class="std std-ref">Fixed Grid</span></a> in the initial pass of site selection, however then produces finer and finer grids around the successful trajectories. The number of such bifurcations is specified via the value set for <code class="docutils literal notranslate"><span class="pre">SCAT_TYPE</span></code> on line 143 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>.</p>
+<p>In this mode, the run number specifies the number of iterations to use for a non 0K surface, and is otherwise ignored if the temperature is set to 0.</p>
+</div>
+<div class="section" id="chain-mode">
+<span id="id3"></span><h3>Chain Mode<a class="headerlink" href="#chain-mode" title="Permalink to this headline">¶</a></h3>
+<p>Chain mode fires a line of particles, starting at the initial x, y coordinates, and ending at the final ones, these are specified via lines 119 and 122 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>. This mode fires the number of specified particles (line 106 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>), with even spacing.</p>
+<p>This mode is enabled by setting line 143 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a> to <code class="docutils literal notranslate"><span class="pre">888</span></code>.</p>
+</div>
+<div class="section" id="single-shot-mode">
+<span id="id4"></span><h3>Single Shot Mode<a class="headerlink" href="#single-shot-mode" title="Permalink to this headline">¶</a></h3>
+<p>A Single Shot run can either be enabled via the commandline argument <code class="docutils literal notranslate"><span class="pre">-s</span></code>, or by setting the trajctory number to 1. In this mode, SAFARI will log information about the entire trajectory. The run is done with a target location specified by lines 119 and 122 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>, or via the <code class="docutils literal notranslate"><span class="pre">-x</span></code> and <code class="docutils literal notranslate"><span class="pre">-y</span></code> arguments.</p>
+<p>The default behaviour of this mode depends on the value for <code class="docutils literal notranslate"><span class="pre">SCAT_TYPE</span></code> (line 143 of <a class="reference internal" href="input.html#commented-sample"><span class="std std-ref">input file</span></a>), if this is 0, it will produce the entire lattice this can result in extremely large <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> files. To only include the “relevant” lattice sites, you can use the <code class="docutils literal notranslate"><span class="pre">-r</span></code> argument or set <code class="docutils literal notranslate"><span class="pre">SCAT_TYPE</span></code> to a non-zero value.</p>
+<p>More information about the specific output files for this run can be located at <a class="reference internal" href="output.html#ssm-files"><span class="std std-ref">Single Shot Mode Files</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory behind SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building SAFARI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running SAFARI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-input-files">Required Input Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">SAFARI Sample Input Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">SAFARI Sample Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Running SAFARI</a><ul>
+<li><a class="reference internal" href="#required-input-files">Required Input Files</a><ul>
+<li><a class="reference internal" href="#optional-input-files">Optional Input Files</a><ul>
+<li><a class="reference internal" href="#produced-output-files">Produced Output Files</a></li>
+<li><a class="reference internal" href="#command-line-arguments">Command Line Arguments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#command-line-examples">Command Line examples</a><ul>
+<li><a class="reference internal" href="#safari-modes">SAFARI Modes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#monte-carlo">Monte Carlo</a></li>
+<li><a class="reference internal" href="#fixed-grid">Fixed Grid</a></li>
+<li><a class="reference internal" href="#adaptive-grid">Adaptive Grid</a></li>
+<li><a class="reference internal" href="#chain-mode">Chain Mode</a></li>
+<li><a class="reference internal" href="#single-shot-mode">Single Shot Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="building.html"
+                        title="previous chapter">Building SAFARI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="input.html"
+                        title="next chapter">SAFARI Sample Input Files</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="input.html" title="SAFARI Sample Input Files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="building.html" title="Building SAFARI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Running SAFARI</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

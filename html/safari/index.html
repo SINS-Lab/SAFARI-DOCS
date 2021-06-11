@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAFARI &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Theory behind SAFARI" href="theory/theory.html" />
+    <link rel="prev" title="Welcome to SAFARI Documentation!" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="theory/theory.html" title="Theory behind SAFARI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to SAFARI Documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="safari">
+<h1>SAFARI<a class="headerlink" href="#safari" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preamble">
+<h2>Preamble<a class="headerlink" href="#preamble" title="Permalink to this headline">¶</a></h2>
+<p>SAFARI<span id="id1"><sup><a class="reference internal" href="../index.html#id2">1</a></sup></span> <span id="id2"><sup><a class="reference internal" href="../index.html#id3">2</a></sup></span> is an ion-surface scattering simulation, which is optimized for low and hyperthermal energies. SAFARI uses highly local molecular dynamics, where the particles of interest only interact with a relatively low number of others. This allows for greatly reducing the computational complexity of the simulation, thereby reducing runtimes.</p>
+<p>SAFARI is a classical simulation. This is due to the momentum of the projectiles involved being sufficiently high that classical trajectories well describe their motion. This does limit the lower energy bounds of the simulation, but those limits are either in the thermal range, or in situations such as grazing incidences, which mostly apply for neutral projectiles, ie, not ions.</p>
+</div>
+<div class="section" id="safari-units">
+<h2>SAFARI Units<a class="headerlink" href="#safari-units" title="Permalink to this headline">¶</a></h2>
+<p>SAFARI uses the following system of units. These units are chosen out of convenience, or general standards in literature. For single ions, the <code class="docutils literal notranslate"><span class="pre">eV</span></code> is a convenient measure of energy per ion, and the <code class="docutils literal notranslate"><span class="pre">AMU</span></code> is a convenient mass. For the lattice sizes under consideration, and the average atomic distances, the <code class="docutils literal notranslate"><span class="pre">Å</span></code> is a relevant length scale. Degrees are used for simplicity of reading angles on experimental setups. The remaining units are not directly measured.</p>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Units used in SAFARI, both internally and in the input files</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Quantity</strong></p></th>
+<th class="head"><p><strong>Units</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Energy</p></td>
+<td><p>eV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distance</p></td>
+<td><p>Å</p></td>
+</tr>
+<tr class="row-even"><td><p>Mass</p></td>
+<td><p>AMU</p></td>
+</tr>
+<tr class="row-odd"><td><p>Angles</p></td>
+<td><p>Degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p><span class="math notranslate nohighlight">\({Å}  \sqrt{\textrm{AMU / eV}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Momentum</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{\textrm{eV AMU}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Velocity</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{\textrm{eV / AMU}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Force</p></td>
+<td><p>eV / Å</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SAFARI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preamble">Preamble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#safari-units">SAFARI Units</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="theory/theory.html">Theory behind SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/building.html">Building SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html">Running SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/input.html">SAFARI Sample Input Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/output.html">SAFARI Sample Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SAFARI</a><ul>
+<li><a class="reference internal" href="#preamble">Preamble</a></li>
+<li><a class="reference internal" href="#safari-units">SAFARI Units</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">Welcome to SAFARI Documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="theory/theory.html"
+                        title="next chapter">Theory behind SAFARI</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="theory/theory.html" title="Theory behind SAFARI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="Welcome to SAFARI Documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

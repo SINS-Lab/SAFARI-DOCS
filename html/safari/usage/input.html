@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SAFARI Sample Input Files &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SAFARI Sample Output Files" href="output.html" />
+    <link rel="prev" title="Running SAFARI" href="usage.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="output.html" title="SAFARI Sample Output Files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Running SAFARI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI Sample Input Files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="safari-sample-input-files">
+<span id="safari-sample-input-file"></span><h1>SAFARI Sample Input Files<a class="headerlink" href="#safari-sample-input-files" title="Permalink to this headline">¶</a></h1>
+<p>These files are generally whitespace separated. The location and name of these files is specified via the <code class="docutils literal notranslate"><span class="pre">-i</span></code> argument, or is specified on the first line of a file <code class="docutils literal notranslate"><span class="pre">safari.input</span></code> in the run directory.</p>
+<div class="section" id="main-input-file">
+<span id="main-input"></span><h2>Main Input File<a class="headerlink" href="#main-input-file" title="Permalink to this headline">¶</a></h2>
+<p>The fields in the input file are whitespace separated, with the input lines being read in a specific order. Lines beginning with a <code class="docutils literal notranslate"><span class="pre">#</span></code>, or entirely consisting of whitespace are ignored for the purposes of the indexed order while reading.</p>
+<p>Boolean values are specified via <code class="docutils literal notranslate"><span class="pre">t</span></code> for <code class="docutils literal notranslate"><span class="pre">true</span></code>, and anything else for <code class="docutils literal notranslate"><span class="pre">false</span></code>, usually a <code class="docutils literal notranslate"><span class="pre">f</span></code> is used in this case. Floating point values use <a class="reference external" href="http://www.cplusplus.com/reference/cstdlib/atof/">atof</a>, so any input valid for that format is accepted. Integer values use <a class="reference external" href="http://www.cplusplus.com/reference/cstdlib/atoi/">atoi</a>.</p>
+<div class="section" id="commented-input-file">
+<span id="commented-sample"></span><h3>Commented Input File<a class="headerlink" href="#commented-input-file" title="Permalink to this headline">¶</a></h3>
+<p>Here is a sample input file for SAFARI, it is an extended one including comments.</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c"># This is a sample input file for Sea-Safari.</span>
+<span class="c"># Lines starting with # are comment lines, otherwise</span>
+<span class="c"># All lines must follow the order found here,</span>
+<span class="c"># blank lines are ignored also.</span>
+<span class="c"># </span>
+<span class="c"># For boolean flags:</span>
+<span class="c">#   t : true</span>
+<span class="c">#   f : false (or anything not t)</span>
+
+<span class="c"># Units used:</span>
+<span class="c">#</span>
+<span class="c"># Distances are in Angstroms, unless specified otherwise.</span>
+<span class="c"># Masses are in AMU</span>
+<span class="c"># Energies are in eV</span>
+<span class="c"># Angles are in Degrees</span>
+<span class="c"># Times are in Angstrom * sqrt(AMU / eV)</span>
+
+<span class="c"># Beam Parameters:</span>
+<span class="c"># E0, Theta0, Phi0, atomic mass, atomic symbol</span>
+<span class="c">#</span>
+<span class="n">250</span><span class="p">.</span><span class="n">0</span> <span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">00</span> <span class="n">22</span><span class="p">.</span><span class="n">989</span> <span class="n">Na</span>
+
+<span class="c"># Most of these are currently unused at present</span>
+<span class="c"># EMIN,EMAX,ERES,ARES</span>
+<span class="c">#</span>
+<span class="c"># EMIN - anything below this will not count as a hit in the detector</span>
+<span class="c"># ERES - if not 0, will &quot;thermalize&quot; the ion as well (not currently implememnted)</span>
+<span class="c"># EMAX - unused</span>
+<span class="c"># ARES - unused</span>
+<span class="c">#</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">250</span> <span class="n">2</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span>
+
+<span class="c"># Detector Type and optional cull flag</span>
+<span class="c">#  &lt;type&gt; &lt;cull flag|optional&gt;</span>
+<span class="c">#</span>
+<span class="c">#   If &lt;type&gt; is not 0, then only trajectories within phi of 10</span>
+<span class="c">#   if PHI0 will be added to the data file, this trims out</span>
+<span class="c">#   the trajectories which are out of bounds of the detector.</span>
+<span class="c">#</span>
+<span class="c">#   if &lt;cull flag&gt; is f, then trajectories which fail will not</span>
+<span class="c">#   be included in the data file, they will only be included</span>
+<span class="c">#   in the final error counts in the debug output file.</span>
+<span class="c">#</span>
+<span class="n">1</span> <span class="n">f</span>
+
+<span class="c"># Detector parameters, the number of these depends on Detector Type</span>
+<span class="c">#</span>
+<span class="c"># Currently, only 1 detector is implemented, it takes the arugments </span>
+<span class="c"># in the following order:</span>
+<span class="c">#</span>
+<span class="c"># Detector Theta, Theta size, Phi size</span>
+<span class="c">#</span>
+<span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span>
+
+<span class="c"># Integration Parameters</span>
+<span class="c"># time steps</span>
+<span class="c">#</span>
+<span class="n">1e</span><span class="p">-</span><span class="n">08</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span>
+<span class="c">#</span>
+<span class="c"># Error parameters</span>
+<span class="c">#</span>
+<span class="n">0</span><span class="p">.</span><span class="n">3</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">1e</span><span class="p">-</span><span class="n">06</span>
+
+<span class="c"># max number of atoms to interact with</span>
+<span class="c">#</span>
+<span class="n">12</span>
+
+<span class="c"># this one should always be true.</span>
+<span class="c"># This is whether the surface recoils on impact.</span>
+<span class="c">#</span>
+<span class="n">t</span>
+
+<span class="c">#Initial Z for the ions, this is also when it leaves</span>
+<span class="c">#</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span>
+
+<span class="c"># Number of allowed integration steps before failing.</span>
+<span class="c">#</span>
+<span class="n">4000</span>
+
+<span class="c"># These are search related, max distances and table steps</span>
+<span class="c">#</span>
+<span class="c"># for r:</span>
+<span class="c">#</span>
+<span class="n">10</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">002</span>
+<span class="c">#</span>
+<span class="c"># for z: (not yet implemented)</span>
+<span class="c">#</span>
+<span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">0003</span>
+
+<span class="c"># These are more search and failure conditions.</span>
+<span class="c"># max distance to search, threshold for failing due to energy change</span>
+<span class="c"># Max distance is in &quot;cells&quot;, each of which is roughly 5 angstroms across</span>
+<span class="c">#</span>
+<span class="c"># The energy change error for each hit is listed in the data file, this</span>
+<span class="c"># can be used to determine a good value for this second parameter</span>
+<span class="c">#</span>
+<span class="n">2</span> <span class="n">5</span>
+
+<span class="c"># This is how many runs to do for Montecarlo or Chainscat modes.</span>
+<span class="c"># If this is 1, it will run a single shot run at x:min y:min.</span>
+<span class="c">#</span>
+<span class="c"># In adaptive grid mode, this number is how many thermal iterations</span>
+<span class="c"># are run, this is only applied if the temperature is not 0</span>
+<span class="c">#</span>
+<span class="n">100000</span>
+
+<span class="c"># Range of the crystal to scatter off</span>
+<span class="c"># Montecarlo mode ignores the step, and chainscat</span>
+<span class="c"># will run from xmin, ymin to xmax, ymax, with the above</span>
+<span class="c"># number of trajectories.</span>
+<span class="c">#</span>
+<span class="c"># Any values after this, will be applied as a mask for the surface</span>
+<span class="c"># These values should be the coordinates of the corners of a polygon</span>
+<span class="c"># In a closed order for that polygon.</span>
+<span class="c">#</span>
+<span class="c"># x:(min, step, max) (Optional polygon)</span>
+<span class="c">#</span>
+<span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+<span class="c"># y:(min, step, max) (Optional polygon)</span>
+<span class="c">#</span>
+<span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+
+<span class="c"># These flags control the mode of operation (unless single shot mode)</span>
+<span class="c"># SCAT_FLAG of 666 means we are doing normal scattering, anything else</span>
+<span class="c"># is a debug flag for running tests.</span>
+<span class="c">#</span>
+<span class="c"># SCAT_FLAG values:</span>
+<span class="c">#   555 - Run performance test on cached values vs computed ones</span>
+<span class="c">#   666 - Run normal scattering routine, defined by SCAT_TYPE/number</span>
+<span class="c">#   777 - Run tests of lattice copying speeds.</span>
+<span class="c">#   888 - Run tests of reliablity of RNG</span>
+<span class="c">#   999 - Test whether the space mask is working correctly.</span>
+<span class="c">#</span>
+<span class="c"># SCAT_TYPE values:</span>
+<span class="c">#   666 - Montecarlo - N Random shots in the range</span>
+<span class="c">#   777 - Grid Scat - Shots in a grid, with the given steps</span>
+<span class="c">#   888 - Chainscat - N shots in a line from min to max</span>
+<span class="c">#  &lt;100 - Adaptive Grid, with this value being the max depth</span>
+
+<span class="c"># SCAT_FLAG, SCAT_TYPE</span>
+<span class="c">#</span>
+<span class="n">666</span> <span class="n">666</span>
+
+<span class="c"># These are the number of unit cells to generate for the crystal.</span>
+<span class="c"># These are also used to cull trajectories which leave the crystal</span>
+<span class="c"># The bounds of the crystal are these values multiplied by AX and AY</span>
+<span class="c">#</span>
+<span class="c"># RAX, RAY</span>
+<span class="c">#</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span>
+
+<span class="c"># These parameters are for the radial ion-atom potentials</span>
+<span class="c"># The first number is how many parameters there are,</span>
+<span class="c"># The second is the type of potential, currently only 1 is implemented.</span>
+<span class="c">#</span>
+<span class="c">#   1 - double exponential function - has 4 parameters per lattice atom type.</span>
+<span class="c">#       this is of form: a * exp(-b * r) + c * exp(-d * r)</span>
+<span class="c">#       where a, b, c, d are the 4 parameters per lattice atom</span>
+<span class="c">#</span>
+<span class="c">#   [a] = eV</span>
+<span class="c">#   [b] = 1/Angstrom</span>
+<span class="c">#   [c] = eV</span>
+<span class="c">#   [d] = 1/Angstrom</span>
+<span class="c">#</span>
+<span class="c"># The third parameter is the type of inter-lattice forces to use</span>
+<span class="c">#</span>
+<span class="c">#   0 - default if not present, use einstien springs</span>
+<span class="c">#   1 - Use springs between nearest neighbours</span>
+<span class="c">#   2 - Use lennard Jones, in this case, </span>
+<span class="c">#       needs additional parameters after</span>
+<span class="c">#       the 4 parameters below</span>
+<span class="c">#</span>
+<span class="n">4</span> <span class="n">1</span> <span class="n">0</span>
+
+<span class="c"># The parameters for the potentials</span>
+<span class="c">#</span>
+<span class="c"># If the interlattice force option is 2, there then needed</span>
+<span class="c"># to be additional lennard jones parameters added after these</span>
+<span class="c">#</span>
+<span class="n">4153</span><span class="p">.</span><span class="n">6</span> <span class="n">3</span><span class="p">.</span><span class="n">625</span> <span class="n">27017</span><span class="p">.</span><span class="n">57</span> <span class="n">7</span><span class="p">.</span><span class="n">286</span>
+
+<span class="c"># These parameters are for the image charge.</span>
+<span class="c"># The first is how many parameters, the second is the type.</span>
+<span class="c"># Only image potential types 0 and 1 are implemented</span>
+<span class="c">#</span>
+<span class="c">#   0 - Entry/Exit only image, only has 2 parameters:</span>
+<span class="c">#       1: z_min, potential is constant v_min below this.</span>
+<span class="c">#       2: v_min, this is the minimum value for the potential</span>
+<span class="c">#</span>
+<span class="c">#   1 - Flat image potential, only has 2 parameters:</span>
+<span class="c">#       1: z_min, potential is constant v_min below this.</span>
+<span class="c">#       2: v_min, this is the minimum value for the potential</span>
+<span class="c">#</span>
+<span class="n">2</span> <span class="n">0</span>
+
+<span class="c"># The parameters for the image potential</span>
+<span class="c">#</span>
+<span class="n">1</span><span class="p">.</span><span class="n">26</span> <span class="n">2</span><span class="p">.</span><span class="n">0</span>
+
+<span class="c"># These are parameters for temperature and randomization.</span>
+<span class="c"># They are: Temperature, Seed, initial ion_index</span>
+<span class="c"># Seed is used for both temperature and Montecarlo mode.</span>
+<span class="c"># Initial Ion Index allows repeating runs done on thermalized surfaces.</span>
+<span class="c">#</span>
+<span class="n">300</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">9436337324</span> <span class="n">1</span>
+
+<span class="c"># This is a flag that controls whether image charge effects are included</span>
+<span class="c">#</span>
+<span class="n">f</span>
+
+<span class="c"># These control failure conditions for the code</span>
+<span class="c"># They are: Stuck Energy, Buried Distance</span>
+<span class="c">#</span>
+<span class="c"># Stuck energy is the amount of total energy for the ion to be considered</span>
+<span class="c"># bound to the surface, and not leaving.</span>
+<span class="c"># Buried Distance is the minimum distance below Z=0 before failing</span>
+<span class="c">#</span>
+<span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">5</span> <span class="n">8</span><span class="p">.</span><span class="n">1</span>
+
+<span class="c"># This section controls the lattice to scatter off.</span>
+<span class="c"># First is the basis to generate the lattice from.</span>
+<span class="c">#</span>
+<span class="c"># These 3 values are AX, AY, AZ, the lattice constants for the basis.</span>
+<span class="c">#</span>
+<span class="n">4</span><span class="p">.</span><span class="n">0786</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+
+<span class="c"># This line is how many sites are in the basis</span>
+<span class="n">4</span>
+<span class="c"># Below are the above number of lines, each defining a basis site.</span>
+<span class="c"># These are in the format: X, Y, Z, Type.</span>
+<span class="c"># Type corresponds to one of the atoms defined below, and X,Y,Z are</span>
+<span class="c"># the coordinates of this site, to be scaled by AX,AY,AZ.</span>
+<span class="c"># these distances are unitless</span>
+<span class="c">#</span>
+<span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span>
+<span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span>
+
+<span class="c"># Here we define the atoms in the lattice.</span>
+<span class="c"># First we start with how many atoms there are.</span>
+<span class="c">#</span>
+<span class="n">1</span>
+
+<span class="c"># Next we have pairs of lines, containing the following information:</span>
+<span class="c"># Atomic Mass, Atomic Number, Atomic Symbol</span>
+<span class="c"># Spring Constants (kx, ky, kz)</span>
+<span class="c">#</span>
+<span class="n">196</span><span class="p">.</span><span class="n">967</span> <span class="n">79</span> <span class="n">Au</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span>
+
+<span class="c"># These control inter-atomic forces</span>
+<span class="c"># </span>
+<span class="c"># Parameters:</span>
+<span class="c"># </span>
+<span class="c"># 1. Whether interatomic forces occur at all.</span>
+<span class="c">#</span>
+<span class="c"># 2. k factor for interatomic springs.</span>
+<span class="c">#</span>
+<span class="c"># 3. this is breaking condition for interatomic springs,</span>
+<span class="c">#    if using einstien, this is value in eV for where they break</span>
+<span class="c">#    for interatomic springs, this is scaled by 1/r^2 for the initial</span>
+<span class="c">#    seperation of the lattice sites</span>
+<span class="c">#</span>
+<span class="c"># 4. Number of nearest neighbours to consider for interaction,</span>
+<span class="c">#    This defaults to 1 if the argument is not present.</span>
+<span class="c">#</span>
+<span class="n">t</span> <span class="n">1</span><span class="p">.</span><span class="n">5</span> <span class="n">10</span> <span class="n">2</span>
+
+<span class="c"># This line defines the surface face of the crystal to generate.</span>
+<span class="c"># The first three parameters are nessisary, they are the </span>
+<span class="c"># miller indecies of the surface face of the crystal.</span>
+<span class="c"># If the 4th parameter is t, then an existing crystal will be loaded.</span>
+<span class="c"># The existing crystal needs to be in a file with extension &quot;crys_in&quot;, with</span>
+<span class="c"># the same name as the input file.</span>
+<span class="c"># the crystal loading is enabled, then 3 more parameters are also needed.</span>
+<span class="c"># These are to define the surface face of the loaded crystal, to be used</span>
+<span class="c"># to rotate the crystal to the requested surface face.</span>
+<span class="c">#</span>
+<span class="n">0</span> <span class="n">0</span> <span class="n">1</span> <span class="n">f</span> <span class="n">1</span> <span class="n">1</span> <span class="n">1</span>
+
+<span class="c"># The next line is frictional force coefficients.</span>
+<span class="c"># Friction is modelled as |F| = av + bv^2,</span>
+<span class="c"># where v is the velocity of the ion, and the direction of F</span>
+<span class="c"># is opposite to the direction of the velocity</span>
+<span class="c"># </span>
+<span class="c"># [a] = sqrt(eV * AMU) * Angstrom^2</span>
+<span class="c"># [b] =  AMU * Angstrom^2</span>
+<span class="c">#</span>
+<span class="c"># These are only checked if they are not both 0</span>
+<span class="c"># </span>
+<span class="n">0</span> <span class="n">0</span>
+</pre></div>
+</td></tr></table></div>
+<div class="section" id="important-lines">
+<span id="id1"></span><h4>Important Lines<a class="headerlink" href="#important-lines" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>21 - Initial conditions for the beam</p></li>
+<li><p>44 - the <code class="docutils literal notranslate"><span class="pre">cull</span> <span class="pre">flag</span></code> can be used to get specific details as to the projectiles which trigger the various failure conditions, and the <code class="docutils literal notranslate"><span class="pre">type</span></code> can enable producing <a class="reference internal" href="output.html#spec-file"><span class="std std-ref">The .spec file</span></a></p></li>
+<li><p>53 - Detector window</p></li>
+<li><p>66 - This controls the maximum number of particles to consider for interaction, smaller numbers greatly reduce runtimes</p></li>
+<li><p>75 - This controls the initial z position of the projectile, adjusting this may be nessisary depending on surface roughness</p></li>
+<li><p>79 - This controls the maximum number if integration steps, see <a class="reference internal" href="output.html#data-file"><span class="std std-ref">The .data file</span></a> more details</p></li>
+<li><p>106 - Run Number, ignored in <a class="reference internal" href="usage.html#fixed-grid"><span class="std std-ref">Fixed Grid</span></a> Mode</p></li>
+<li><p>119 - X Range</p></li>
+<li><p>122 - Y Range</p></li>
+<li><p>143 - Scattering Modes and Options</p></li>
+<li><p>174 - Potential type parameters</p></li>
+<li><p>219 - Stuck/Buried thresholds</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="compact-input-file">
+<span id="raw-sample"></span><h3>Compact Input File<a class="headerlink" href="#compact-input-file" title="Permalink to this headline">¶</a></h3>
+<p>Here is the same input file, however with the comments removed, this is an example of a compact input file for SAFARI. This is also reproduced in <a class="reference internal" href="output.html#dbug-file"><span class="std std-ref">The .dbug file</span></a>.</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">250</span><span class="p">.</span><span class="n">0</span> <span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">00</span> <span class="n">22</span><span class="p">.</span><span class="n">989</span> <span class="n">Na</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">250</span> <span class="n">2</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span>
+<span class="n">1</span> <span class="n">f</span>
+<span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">45</span><span class="p">.</span><span class="n">0</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span>
+<span class="n">1e</span><span class="p">-</span><span class="n">08</span> <span class="n">10</span><span class="p">.</span><span class="n">0</span>
+<span class="n">0</span><span class="p">.</span><span class="n">3</span> <span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">1e</span><span class="p">-</span><span class="n">06</span>
+<span class="n">12</span>
+<span class="n">t</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span>
+<span class="n">2000</span>
+<span class="n">10</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">002</span>
+<span class="n">0</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">0003</span>
+<span class="n">2</span> <span class="n">5</span>
+<span class="n">1000</span>
+<span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+<span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">1</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+<span class="n">666</span> <span class="n">666</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span>
+<span class="n">4</span> <span class="n">1</span> <span class="n">0</span>
+<span class="n">4153</span><span class="p">.</span><span class="n">6</span> <span class="n">3</span><span class="p">.</span><span class="n">625</span> <span class="n">27017</span><span class="p">.</span><span class="n">57</span> <span class="n">7</span><span class="p">.</span><span class="n">286</span>
+<span class="n">2</span> <span class="n">0</span>
+<span class="n">1</span><span class="p">.</span><span class="n">26</span> <span class="n">2</span><span class="p">.</span><span class="n">0</span>
+<span class="n">300</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">9436337324</span> <span class="n">1</span>
+<span class="n">f</span>
+<span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">5</span> <span class="n">8</span><span class="p">.</span><span class="n">1</span>
+<span class="n">4</span><span class="p">.</span><span class="n">0786</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span> <span class="n">4</span><span class="p">.</span><span class="n">0786</span>
+<span class="n">4</span>
+<span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span>
+<span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span>
+<span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">0</span><span class="p">.</span><span class="n">5</span> <span class="n">1</span><span class="p">.</span><span class="n">0</span> <span class="n">1</span>
+<span class="n">1</span>
+<span class="n">196</span><span class="p">.</span><span class="n">967</span> <span class="n">79</span> <span class="n">Au</span>
+<span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span> <span class="n">5</span><span class="p">.</span><span class="n">0</span>
+<span class="n">t</span> <span class="n">1</span><span class="p">.</span><span class="n">5</span> <span class="n">10</span> <span class="n">2</span>
+<span class="n">0</span> <span class="n">0</span> <span class="n">1</span> <span class="n">f</span> <span class="n">1</span> <span class="n">1</span> <span class="n">1</span>
+<span class="n">0</span> <span class="n">0</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="external-potentials-file">
+<span id="pots-files"></span><h2>External Potentials File<a class="headerlink" href="#external-potentials-file" title="Permalink to this headline">¶</a></h2>
+<p>SAFARI calculates potentials and forces by linearly interpolating between values in pre-computed lookup tables. These tables range from <code class="docutils literal notranslate"><span class="pre">r_step</span></code> to <code class="docutils literal notranslate"><span class="pre">r_max</span></code> (see line 85 of <a class="reference internal" href="#commented-sample"><span class="std std-ref">Commented Input File</span></a>). They start at <code class="docutils literal notranslate"><span class="pre">r_step</span></code>, as the potentials are not well defined at 0 separation. The values of <code class="docutils literal notranslate"><span class="pre">r_max</span></code> and <code class="docutils literal notranslate"><span class="pre">r_step</span></code> should be chosen such that the particles will never approach <code class="docutils literal notranslate"><span class="pre">r_step</span></code> as a separation distance (see <a class="reference internal" href="output.html#data-file"><span class="std std-ref">The .data file</span></a> for how to determine minimum separation distance), and such that a linear interpolation between points separated by <code class="docutils literal notranslate"><span class="pre">r_step</span></code> well fits the potential. <code class="docutils literal notranslate"><span class="pre">r_max</span></code> should be chosen such that the potential at that ditance is sufficiently close to 0, 10Å is generally a good value for this.</p>
+<p>It should be noted that the tables in the external potential file are assumed to have the following ranges:</p>
+<p>r = r_step -&gt; r_max, where the first point is the value at r_step (generally undefined at 0 anyway).</p>
+<p>The values in the table are in the natural order, however no order is required for the different tables.</p>
+<p>Below are some examples of organization in a <code class="docutils literal notranslate"><span class="pre">.pots</span></code> file</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">Na</span>  <span class="n">Au</span>  <span class="n">30750</span><span class="p">.</span><span class="n">31988</span>  <span class="n">208950</span><span class="p">.</span><span class="n">34829</span>
+<span class="n">Na</span>  <span class="n">Au</span>  <span class="n">30335</span><span class="p">.</span><span class="n">34062</span>  <span class="n">206035</span><span class="p">.</span><span class="n">86306</span>
+<span class="n">Na</span>  <span class="n">Au</span>  <span class="n">29926</span><span class="p">.</span><span class="n">14885</span>  <span class="n">203162</span><span class="p">.</span><span class="n">75772</span>
+<span class="p">...</span> <span class="n">several</span> <span class="n">thousand</span> <span class="n">omitted</span> <span class="n">lines</span>
+<span class="n">Na</span>  <span class="n">Au</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+<span class="n">Na</span>  <span class="n">Au</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+<span class="n">Cs</span>  <span class="n">Cu</span>  <span class="n">2257</span><span class="p">.</span><span class="n">89007</span>  <span class="n">23793</span><span class="p">.</span><span class="n">80587</span>
+<span class="n">Cu</span>  <span class="n">Cu</span>  <span class="n">2257</span><span class="p">.</span><span class="n">89007</span>  <span class="n">23793</span><span class="p">.</span><span class="n">80587</span>
+<span class="n">Cs</span>  <span class="n">Cu</span>  <span class="n">2210</span><span class="p">.</span><span class="n">87590</span>  <span class="n">23222</span><span class="p">.</span><span class="n">80460</span>
+<span class="n">Cu</span>  <span class="n">Cu</span>  <span class="n">2210</span><span class="p">.</span><span class="n">87590</span>  <span class="n">23222</span><span class="p">.</span><span class="n">80460</span>
+<span class="n">Cs</span>  <span class="n">Cu</span>  <span class="n">2164</span><span class="p">.</span><span class="n">98923</span>  <span class="n">22666</span><span class="p">.</span><span class="n">24121</span>
+<span class="n">Cu</span>  <span class="n">Cu</span>  <span class="n">2164</span><span class="p">.</span><span class="n">98923</span>  <span class="n">22666</span><span class="p">.</span><span class="n">24121</span>
+<span class="p">...</span> <span class="n">several</span> <span class="n">thousand</span> <span class="n">omitted</span> <span class="n">lines</span>
+<span class="n">Cs</span>  <span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+<span class="n">Cu</span>  <span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+<span class="n">Cs</span>  <span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+<span class="n">Cu</span>  <span class="n">Cu</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>  <span class="n">0</span><span class="p">.</span><span class="n">00000</span>
+</pre></div>
+</td></tr></table></div>
+<p>In the above file, the <code class="docutils literal notranslate"><span class="pre">...</span></code> represent omitted rows to make this file more compact for example purposes.</p>
+<p>Here it demonstrates including multiple sets of potentials, each pairing of atoms is treated as a separate table, so they can either be separated entirely, such as the first block with <code class="docutils literal notranslate"><span class="pre">Na</span> <span class="pre">Au</span></code>, or they can be interlaced, as in the <code class="docutils literal notranslate"><span class="pre">Cs</span> <span class="pre">Cu</span></code> and <code class="docutils literal notranslate"><span class="pre">Cu</span> <span class="pre">Cu</span></code> cases.</p>
+</div>
+<div class="section" id="external-crystal-file">
+<span id="crys-in-files"></span><h2>External Crystal File<a class="headerlink" href="#external-crystal-file" title="Permalink to this headline">¶</a></h2>
+<p>Surfaces can be specified via an external <code class="docutils literal notranslate"><span class="pre">.crys_in</span></code> file, below the format for that file will be discussed. A <a class="reference internal" href="output.html#crys-files"><span class="std std-ref">similar file</span></a> is also produced as an output file, which can be a useful way to generate these files. This file will be loaded if the 4th parameter on line 281 of <a class="reference internal" href="#commented-sample"><span class="std std-ref">Commented Input File</span></a> is <code class="docutils literal notranslate"><span class="pre">t</span></code>. In this case, it will assume that the provided crystal is oriented according to the last three values on that same line, and will then rotate the crystal to the orientation provided by the first three values. This allows loading in an externally provided surface, and then orienting it to an arbitrary direction.</p>
+<p>Each line in the <code class="docutils literal notranslate"><span class="pre">.crys_in</span></code> file specifes an atom at a location. The atom is specified via atomic number and atomic mass, in the following order:</p>
+<div class="highlight-PowerShell notranslate"><div class="highlight"><pre><span></span><span class="no">[X] [Y] [Z] [Atomic Number] [Mass]</span>
+</pre></div>
+</div>
+<p>Here is an example of such a file:</p>
+<div class="highlight-PowerShell notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">2</span><span class="p">.</span><span class="n">600000</span>  <span class="p">-</span><span class="n">5</span><span class="p">.</span><span class="n">200000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">1</span><span class="p">.</span><span class="n">300000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+<span class="n">0</span><span class="p">.</span><span class="n">000000</span>  <span class="p">-</span><span class="n">3</span><span class="p">.</span><span class="n">900000</span>  <span class="p">-</span><span class="n">7</span><span class="p">.</span><span class="n">800000</span>  <span class="n">29</span>  <span class="n">63</span><span class="p">.</span><span class="n">546000</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory behind SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building.html">Building SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Running SAFARI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SAFARI Sample Input Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main-input-file">Main Input File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-potentials-file">External Potentials File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-crystal-file">External Crystal File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">SAFARI Sample Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SAFARI Sample Input Files</a><ul>
+<li><a class="reference internal" href="#main-input-file">Main Input File</a><ul>
+<li><a class="reference internal" href="#commented-input-file">Commented Input File</a><ul>
+<li><a class="reference internal" href="#important-lines">Important Lines</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compact-input-file">Compact Input File</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#external-potentials-file">External Potentials File</a></li>
+<li><a class="reference internal" href="#external-crystal-file">External Crystal File</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="previous chapter">Running SAFARI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="output.html"
+                        title="next chapter">SAFARI Sample Output Files</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="output.html" title="SAFARI Sample Output Files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="usage.html" title="Running SAFARI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SAFARI Sample Input Files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

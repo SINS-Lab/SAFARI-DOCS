@@ -1,0 +1,5 @@
+# Don't need any of the visual studio code stuff.
+*.vs*
+
+# We only really want source and html
+*doctrees*

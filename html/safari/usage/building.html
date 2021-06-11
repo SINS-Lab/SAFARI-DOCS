@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Building SAFARI &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Running SAFARI" href="usage.html" />
+    <link rel="prev" title="Theory behind SAFARI" href="../theory/theory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Running SAFARI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../theory/theory.html" title="Theory behind SAFARI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building SAFARI</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="building-safari">
+<span id="safari-build"></span><h1>Building SAFARI<a class="headerlink" href="#building-safari" title="Permalink to this headline">¶</a></h1>
+<p>The source code for SAFARI is available on Github at <a class="reference external" href="https://github.com/SINS-Lab/SEA-SAFARI">SAFARI Github</a></p>
+<p>You can build SAFARI from the following steps:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/SINS-Lab/SEA-SAFARI.git SAFARI
+<span class="nb">cd</span> SAFARI
+make
+</pre></div>
+</div>
+<p>This will then generate the executable in <code class="docutils literal notranslate"><span class="pre">./bin/Release/</span></code></p>
+<p>Executables generated:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Sea-Safari - This is the main SAFARI executable</p></li>
+<li><p>XYZ - used to convert the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> files for the single shot trajectories to have a constant timestep, as during the simulation, the timestep is dynamic, which isn’t conducive to producing nice videos.</p></li>
+</ul>
+</div></blockquote>
+<p>If there are any issues with building, you might need to modify the <code class="docutils literal notranslate"><span class="pre">CXXFLAGS</span></code> in <code class="docutils literal notranslate"><span class="pre">makefile</span></code> depending on the specific hardware.</p>
+<p>SAFARI is written using features of C++11, so at least that or higher is required, but otherwise only relies on the standard Libraries in C++11 and OpenMP, so no other dependancies are required to build.</p>
+<div class="section" id="multithreading-considerations">
+<h2>Multithreading Considerations<a class="headerlink" href="#multithreading-considerations" title="Permalink to this headline">¶</a></h2>
+<p>The maximum number of OpenMP threads for SAFARI is defined in <a class="reference external" href="https://github.com/SINS-Lab/SEA-SAFARI/blob/342e157b98dab71ffc16bd00e38337cc62cd8170/src/safari.h#L7">safari.h</a>, via <code class="xref py py-const docutils literal notranslate"><span class="pre">THREADCOUNT</span></code>, This should be adjusted according to the environment it is used in.
+XYZ has a corresponding <code class="xref py py-const docutils literal notranslate"><span class="pre">THREADCOUNT</span></code> in <a class="reference external" href="https://github.com/SINS-Lab/SEA-SAFARI/blob/master/src/xyz_process.cpp#L7">xyz_process.cpp</a>, which is used when smoothing the outputs for use in VMD<span id="id1"><sup><a class="reference internal" href="../../index.html#id5">3</a></sup></span>.</p>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../theory/theory.html">Theory behind SAFARI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building SAFARI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#multithreading-considerations">Multithreading Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Running SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="input.html">SAFARI Sample Input Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">SAFARI Sample Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Building SAFARI</a><ul>
+<li><a class="reference internal" href="#multithreading-considerations">Multithreading Considerations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../theory/theory.html"
+                        title="previous chapter">Theory behind SAFARI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage.html"
+                        title="next chapter">Running SAFARI</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="usage.html" title="Running SAFARI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../theory/theory.html" title="Theory behind SAFARI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Building SAFARI</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

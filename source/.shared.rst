@@ -1,0 +1,52 @@
+.. |initial_conditions| replace:: 21
+
+.. |dtect_type| replace:: 44
+
+.. |dtect_window| replace:: 53
+
+.. |nmax| replace:: 66
+
+.. |Z0| replace:: 75
+
+.. |max_steps| replace:: 79
+
+.. |r_range| replace:: 85
+
+.. |numcha| replace:: 106
+
+.. |x_range| replace:: 119
+
+.. |y_range| replace:: 122
+
+.. |scat_types| replace:: 143
+
+.. |crys_size| replace:: 151
+
+.. |pot_types| replace:: 174
+
+.. |pot_pars| replace:: 181
+
+.. |img_types| replace:: 195
+
+.. |img_pars| replace:: 199
+
+.. |tmp_pars| replace:: 206
+
+.. |stuck_buried| replace:: 219
+
+.. |lat_pars| replace:: 269
+
+.. |lat_orient| replace:: 281
+
+
+
+.. |r_range_compact| replace:: 11
+
+
+.. role:: small-caps
+
+.. |SAFARI| replace:: SAFARI
+
+.. |SAFARI Units| replace:: :ref:`SAFARI Units<SAFARI_units>`
+
+.. |deg| replace:: °

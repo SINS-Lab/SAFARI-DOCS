@@ -1,0 +1,482 @@
+
+<!DOCTYPE html>
+
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theory behind SAFARI &#8212; SAFARI 2.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/classic.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Building SAFARI" href="../usage/building.html" />
+    <link rel="prev" title="SAFARI" href="../index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../usage/building.html" title="Building SAFARI"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="SAFARI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Theory behind SAFARI</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="theory-behind-safari">
+<h1>Theory behind SAFARI<a class="headerlink" href="#theory-behind-safari" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Low and hyperthermal energy ion surface collisions are of interest in a variety of scientific and industrial applications. Examples of such applications include: fusion reactor walls, EUV light sources, ion drive optics, spacecraft outer surfaces, etc, where interactions with the ions result in erosion, lowering the life time of the device. In these cases there is a wide energy distribution of the incident ions. Better understanding of collisions in this energy range can assist with developing materials which can better withstand these environments.</p>
+<p>This page is arranged as follows: <a class="reference internal" href="#methods"><span class="std std-ref">Methods</span></a> discusses the algorithms used in the code, and is arranged in the order in which the various routines are run. <a class="reference internal" href="#methods"><span class="std std-ref">Methods</span></a> also includes information about the input/output files, as well as command line arguments for SAFARI. <a class="reference internal" href="#results"><span class="std std-ref">Results</span></a> discusses comparisons between different scattering modes, and then gives an example of using SAFARI to assist with analysis of experimental data.</p>
+<div class="figure align-default" id="fig-geom">
+<a class="reference internal image-reference" href="../../_images/geom.png"><img alt="Geometry" src="../../_images/geom.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 1 </span><span class="caption-text">The scattering geometry and coordinate system used in SAFARI. The incoming  beam and detector are co-planar, specified by the angle <span class="math notranslate nohighlight">\(\phi\)</span>, and are aligned at angles <span class="math notranslate nohighlight">\(\theta_{\rm{beam}}\)</span> and <span class="math notranslate nohighlight">\(\theta_{\rm{detector}}\)</span> with respect to the target surface normal (z-direction), respectively.</span><a class="headerlink" href="#fig-geom" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="methods">
+<span id="id1"></span><h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="input-files-and-arguments">
+<h3>Input Files and Arguments<a class="headerlink" href="#input-files-and-arguments" title="Permalink to this headline">¶</a></h3>
+<p>SAFARI is configured using a variety of input files, one primary file, and then several optional files, depending on the settings in the primary one. The primary file (referred to as the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a> will determine whether the other files are needed, the other optional files are the externally provided potential tables (<code class="docutils literal notranslate"><span class="pre">.pots</span></code>) and the externally provided lattice file (<code class="docutils literal notranslate"><span class="pre">.crys_in</span></code>). The units used in these files are listed in <a class="reference internal" href="#table-units"><span class="std std-numref">Table 2</span></a>.</p>
+<div class="docutils container">
+<table class="docutils align-default" id="table-units">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Units used in SAFARI, both internally and in the input files</span><a class="headerlink" href="#table-units" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Quantity</strong></p></th>
+<th class="head"><p><strong>Units</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Energy</p></td>
+<td><p>eV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Distance</p></td>
+<td><p>Å</p></td>
+</tr>
+<tr class="row-even"><td><p>Mass</p></td>
+<td><p>AMU</p></td>
+</tr>
+<tr class="row-odd"><td><p>Angles</p></td>
+<td><p>Degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p><span class="math notranslate nohighlight">\({Å}  \sqrt{\textrm{AMU / eV}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Momentum</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{\textrm{eV AMU}}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Velocity</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{\textrm{eV / AMU}}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Force</p></td>
+<td><p>eV / Å</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a> contains the primary configurations, and is arranged with instructions in a specific order, with an assortment of instructions per line. Lines beginning in <code class="docutils literal notranslate"><span class="pre">#</span></code>, or consisting entirely of whitespace are considered “comment lines”, and are ignored. Values on a line are separated by whitespace. This file is used to specify the initial beam parameters, such as initial energy, angle and species. It is also used to specify the target location algorithm, as well as detector parameters. For auto-generated surfaces, this file is used to specify the basis and face of the target, and for external surfaces, it is used to make adjustments to the rotation of the provided surface.</p>
+<div class="docutils container">
+<table class="docutils align-default" id="table-arguments">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">Command line arguments for SAFARI.</span><a class="headerlink" href="#table-arguments" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Argument</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-i [inputfile]</p></td>
+<td><p>Sets the primary input file to <code class="docutils literal notranslate"><span class="pre">[inputfile].input</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>-o [outputfile]</p></td>
+<td><p>Sets the file names for the output files</p></td>
+</tr>
+<tr class="row-even"><td><p>-t [temperaature]</p></td>
+<td><p>Overrides the target temperature</p></td>
+</tr>
+<tr class="row-odd"><td><p>-n [number]</p></td>
+<td><p>Overrides the trajectory number</p></td>
+</tr>
+<tr class="row-even"><td><p>-e [energy]</p></td>
+<td><p>Override of the initial energy</p></td>
+</tr>
+<tr class="row-odd"><td><p>-p [filename]</p></td>
+<td><p>Enables using force tables from <code class="docutils literal notranslate"><span class="pre">[filename].pots</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>-s</p></td>
+<td><p>Forces this run to be a single shot run</p></td>
+</tr>
+<tr class="row-odd"><td><p>-x [value]</p></td>
+<td><p>sets the x-coordinate target of the single shot run</p></td>
+</tr>
+<tr class="row-even"><td><p>-y [value]</p></td>
+<td><p>sets the y-coordinate target of the single shot run</p></td>
+</tr>
+<tr class="row-odd"><td><p>-r</p></td>
+<td><p>flags the single shot run to only output nearby sites</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The externally provided potentials file (<code class="docutils literal notranslate"><span class="pre">.pots</span></code>) consists of tab-delimited tables of forces and potentials. The format for each row is <code class="docutils literal notranslate"><span class="pre">[A]</span> <span class="pre">[B]</span> <span class="pre">[V]</span> <span class="pre">[F]</span></code>, where A and B are the atomic symbols of the two atoms under consideration, and V and F are the potential energy and forces between them. The order in which these lines occur in the file, corresponds to the rows in the force tables, where the first line would be index 1 in the table, and corresponds to a separation distance of <code class="docutils literal notranslate"><span class="pre">r_min</span></code>, where <code class="docutils literal notranslate"><span class="pre">r_min</span></code> is defined in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>. SAFARI will generate a <code class="docutils literal notranslate"><span class="pre">.pots</span></code> file in the output directory for the given lattice if none is provided. To produce a similar file, it can be done in a standard spreadsheet application, by generating the required tables, and then pasting them into an appropriately named text file.</p>
+</div>
+<div class="section" id="lattice-and-lattice-generation">
+<h3>Lattice and Lattice Generation<a class="headerlink" href="#lattice-and-lattice-generation" title="Permalink to this headline">¶</a></h3>
+<p>The lattice used in SAFARI consists of a collection of Site objects, which specify an atom at a particular location, with a particular momentum. These sites are arranged in Cells, where each Cell, is a 5x5x5 cube, with a volume of <span class="math notranslate nohighlight">\(\textrm{125~Å}^{3}\)</span>, aligned with the global XYZ coordinate system. This is done so that the Cell for any given location can be quickly looked up in a hash map, by converting the location to an index of the position of the nearby cube. The current implementation results in a maximum lattice radius of 512 nm. Each Cell then consists of an array of Sites. The Cell size of 5x5x5 was chosen as it resulted in a minimal lookup time for nearby lattice sites. If the cells are larger, there are more sites to check in each one. If the cells are smaller, more cells require checking for sites. This cell size should be adjusted if materials of drastically different atomic densities are considered.</p>
+<div class="section" id="generating-from-provided-basis">
+<h4>Generating from provided basis<a class="headerlink" href="#generating-from-provided-basis" title="Permalink to this headline">¶</a></h4>
+<p>In the lattice section of the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>, the lattice constants ax, ay, and az are defined, as well as a normalized primitive cell. This primitive cell is specified such that when tiled along x, y, and z, it will reproduce the correct unit cell for the +z face. The format for the primitive cell is <code class="docutils literal notranslate"><span class="pre">[x]</span> <span class="pre">[y]</span> <span class="pre">[z]</span> <span class="pre">[index]</span></code>, where x, y, z are the normalized coordinates of the site, and index represents the atom at that site. These atoms are specified by index in the next section of the input file.</p>
+<p>The atoms are specified with 2 lines of information per atom:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Atomic</span> <span class="n">Mass</span><span class="p">]</span> <span class="p">[</span><span class="n">Atomic</span> <span class="n">Number</span><span class="p">]</span> <span class="p">[</span><span class="n">Atomic</span> <span class="n">Symbol</span><span class="p">]</span>
+<span class="p">[</span><span class="n">kx</span><span class="p">]</span> <span class="p">[</span><span class="n">ky</span><span class="p">]</span> <span class="p">[</span><span class="n">kz</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The first line here is for defining the mass, number and symbol of the atom. The second line defines spring constants for the given site. These spring constants are used for lattice thermalization, as well as for the most basic of the lattice restoring force types, which are discussed later.</p>
+<p>The surface direction is specified on the surface direction line of the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a> in the following format: <code class="docutils literal notranslate"><span class="pre">[direction]</span> <span class="pre">[load-flag]</span> <span class="pre">[rotate-to]</span></code>, where <code class="docutils literal notranslate"><span class="pre">[direction]</span></code> is the target surface direction. When using the internal surface generator (<code class="docutils literal notranslate"><span class="pre">[load-flag]</span></code> is “f”), then <code class="docutils literal notranslate"><span class="pre">[rotate-to]</span></code> is ignored. To produce a surface, this primitive cell is tiled into a large cube, and then rotated such that <code class="docutils literal notranslate"><span class="pre">[direction]</span></code> is pointing along +z, and the cube is cut to present a flat surface. The size of the generated lattice in primitive cells is also specified in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>. This cutting is done such that the algorithm which generates the top-most surface will remove entire primitive cells if any of the atoms in the cell are above z=0. The bottom face is cut via a simple culling of atoms below a specified minimum distance. This bottom surface cut is done to reduce memory allocation, and to increase the performance of the used lookup maps.</p>
+<p>Once the surface is generated, it is output to a <code class="docutils literal notranslate"><span class="pre">.crys</span></code> and <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file. The <code class="docutils literal notranslate"><span class="pre">.crys</span></code> file is of the correct format for using as an externally provided surface, and the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> is in the standard format for use with software such as VMD <span id="id2"><sup><a class="reference internal" href="../../index.html#id5">3</a></sup></span>.</p>
+</div>
+<div class="section" id="generating-from-external-file">
+<h4>Generating from external file<a class="headerlink" href="#generating-from-external-file" title="Permalink to this headline">¶</a></h4>
+<p>To specify that the lattice is to use an external surface, <code class="docutils literal notranslate"><span class="pre">[load-flag]</span></code> must be set to “t” on the surface direction line of the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>. <code class="docutils literal notranslate"><span class="pre">[direction]</span></code> and <code class="docutils literal notranslate"><span class="pre">[rotate-to]</span></code> will then specify the given and expected directions of the provided lattice. If these are both the same, no further processing is done after loading, otherwise the provided surface will be rotated accordingly.</p>
+<p>To load the lattice from an external file, the first step is to produce the <code class="docutils literal notranslate"><span class="pre">.crys_in</span></code> file, which should be named the same as the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a> for this run. The format for this file is lines of <code class="docutils literal notranslate"><span class="pre">[X]</span> <span class="pre">[Y]</span> <span class="pre">[Z]</span> <span class="pre">[Atomic</span> <span class="pre">Number]</span> <span class="pre">[Mass]</span></code>, where X, Y and Z are in Å, and mass in AMU. The atom at that site is looked up by the value given for <code class="docutils literal notranslate"><span class="pre">[Atomic</span> <span class="pre">Number]</span></code>.</p>
+<p>After loading the external surface, and rotating to the desired direction, this is also output the same format of <code class="docutils literal notranslate"><span class="pre">.crys</span></code> and <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> files as in the built-in generation mode.</p>
+</div>
+</div>
+<div class="section" id="surface-thermalization">
+<h3>Surface Thermalization<a class="headerlink" href="#surface-thermalization" title="Permalink to this headline">¶</a></h3>
+<p>The surface thermalization in SAFARI is treated as an isotropic, Gaussian distribution in initial positions and momenta of the surface sites. For a non-zero temperature, an average displacement and momentum is calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+dr_i = \sqrt{2E/k_i} \\
+dp_i = \sqrt{2mE}
+\end{split}\end{split}\]</div>
+<p>Where E is the average kinetic energy associated with the given temperature, and <span class="math notranslate nohighlight">\(k_i\)</span> is the spring constant for the given direction. For thermalizing a site in the lattice, two random numbers (<span class="math notranslate nohighlight">\(r_1\)</span> and <span class="math notranslate nohighlight">\(r_2\)</span>) are chosen from a uniform range of [0, 1). These are chosen from a seeded random number generator, where the seed is a combination of a seed from the input file, the thermal seed of the ion (usually just the ordinal of the ion in the set of runs), and the index of the site in the lattice. This allows replicating the exact thermalization state of the lattice for a later run. <span class="math notranslate nohighlight">\(r_1\)</span> is then set to <span class="math notranslate nohighlight">\(\sqrt{-ln(r_1)}\)</span>.</p>
+<p>The position and momentum of this particular site is then set to:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{split}
+r_i = r_0 + dr_i r_1\cos(2\pi r_2) \\
+p_i = p_0 + dp_i r_1\sin(2\pi r_2)
+\end{split}\end{split}\]</div>
+</div>
+<div class="section" id="target-location-selection">
+<span id="target-select"></span><h3>Target Location Selection<a class="headerlink" href="#target-location-selection" title="Permalink to this headline">¶</a></h3>
+<p>SAFARI includes several different modes for selecting the locations on the surface for scattering: Single Shot, Monte Carlo, Grid, Chain and Adaptive Grid. Of these, the primary ones used are Single Shot, Monte Carlo and Adaptive Grid. With the exception of Single Shot, the rest of the modes all use an identical algorithm per particle fired, and only differ in how the target location on the surface is selected.</p>
+<p>Single Shot mode will fire a single ion at the given target coordinates, and will output an entire log of the trajectory. Two log files are produced for this, a <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file, which is a table of position, momentum and energy states of the ion itself, for each timestep in the trajectory, and a <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file, which also includes the positions of relevant lattice sites. These file outputs are the only difference between a trajectory run in Single Shot and the rest of the modes.</p>
+<p>Monte Carlo mode will randomly select a valid surface location, and then fire the particle at that, if temperature is not 0, each ion fired will see a different thermalized surface.</p>
+<p>Grid mode involves rastering the target coordinates across the surface in a rectilinear grid. The bounds and step sizes for this grid are defined in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>. This mode can be used to assist with determining an initial grid size for the Adaptive Grid mode, which is discussed below.</p>
+<p>Chain mode results in a line of trajectories starting at the given lower bound, and ending at the upper bound. The number of particles fired for this mode uses the same option as the number of particles used in Monte Carlo mode.</p>
+<p>Adaptive Grid mode starts by rastering a relatively coarse, fixed spacing grid over the surface. This spacing is specified in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a> as for the Grid mode. For each fired particle which ends up in the detector (See <a class="reference internal" href="#detector-info"><span class="std std-ref">Logging Valid Hits</span></a>), a finer grid is produced around the impact point, and more particles are fired at the new grid. This bifurcation occurs up to a number of times specified in the input file. If the temperature is not 0, this is then repeated for a given number of thermal iterations, where each ion fired during the grid iteration will see a surface with the same initial thermalization state.</p>
+</div>
+<div class="section" id="trajectory-algorithm">
+<h3>Trajectory Algorithm<a class="headerlink" href="#trajectory-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>Each trajectory run starts with an initial setup of the ion’s kinetic energy, as well as initial momentum/position. The momentum is first set based on the specified initial energy and incident angles of theta and phi. The x and y positions are then set such that at z=0, the particle would be at the specified location, if there were no forces acting, and the particle is positioned initially at z=z0. The value z0 is specified in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>. If an image force is enabled, the z-momentum of the ion is then adjusted accordingly. The ion is then passed to the main integrator for the trajectory run.</p>
+<div class="section" id="finding-nearest-atoms-to-ion">
+<h4>Finding nearest atoms to ion<a class="headerlink" href="#finding-nearest-atoms-to-ion" title="Permalink to this headline">¶</a></h4>
+<p>For the first step of the trajectory run, the sites near the ion are collected and sorted by distance, and if inter-lattice forces are enabled, each site has a similar list of sites collected. This collection and sorting is only done afterwards if the ion or site has moved sufficiently that the ordering of the start of the list might have changed. When this list is initially collected, the sites in the lattice have their positions adjusted based on the thermalization state for this particular trajectory. If the site for that cell had been interacted with by a previous ion, it will be reset to its initial location.</p>
+</div>
+<div class="section" id="error-checks-and-thresholds">
+<h4>Error Checks and Thresholds<a class="headerlink" href="#error-checks-and-thresholds" title="Permalink to this headline">¶</a></h4>
+<p>The ion is then checked to see if it is still in a valid state. The following are the exit conditions checked: buried, off edge, stuck, froze or left, If this check fails, the run is terminated.</p>
+<p>As SAFARI is designed for surface scattering spectra, the simulation doesn’t focus on trajectories which get too deep into the surface. These trajectories tend to not leave at appreciable energies, and generally do so in a random manner, not conducive to analysing spectra. These are flagged as buried, and this distance can be adjusted in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+<p>Since the generated crystal is of finite size, there is a concern of boundary conditions along the global x and y directions. As a result, any trajectory which gets too close to these boundaries is terminated and flagged as off edge. If this occurs a significant number of times in a run, the radius of the generated crystal should be increased, which is done in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+<p>There are cases where the Ion can get stuck in the lattice. This is treated as two different exit conditions, stuck and froze. stuck is triggered if the total energy of the ion drops below a specified amount, this will generally indicate that the ion is in a bound state in the lattice, and will not be detectable. froze is triggered if the number of integration steps has exceeded a specified number. Both of these conditions are defined in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+<p>If the ion’s global z-coordinate has exceeded z0, then the ion is considered as having left the lattice, this being the only “good” exit condition.</p>
+<p>There is an additional check for detecting if the ion has encountered an error in the energy due to issues related to lattice particles entering or leaving the simulation, the threshold for this can also be defined in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+</div>
+<div class="section" id="equations-of-motion">
+<h4>Equations of Motion<a class="headerlink" href="#equations-of-motion" title="Permalink to this headline">¶</a></h4>
+<p>At each integration step, the forces on the ion and lattice are calculated twice, once for the current location to compute a predicted location, and once at the predicted location. This is used for a position based predictor-corrector algorithm. The forces considered are, Lattice-Ion pair potentials, Inter-Lattice potentials, Image forces on the ion and electronic friction on the ion.</p>
+<p>For each lattice site found within interaction distance of the ion, the pair potentials are computed (via lookup table generated during loading of input files, and linear interpolation). These forces are then applied to the ion-site pair. Both the maximum distance and number of pairs considered are specified in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+<p>The lattice sites then have their forces computed, with several options available: Einstein Springs, Lattice Springs and Pair Potentials. In the case of Einstein Springs, the lattice sites are assumed to be connected to their original locations with simple, Hooke’s law springs, so no other sites are needed to be considered. For Lattice Springs the potentials used are simple springs between the site and the nearest neighbours for the T=0, rest case of the lattice, and for Pair Potentials the same consideration is done for each nearby lattice site as for the ion-lattice interactions.</p>
+<p>For the initial pass, the predicted locations of the ion and lattice sites are then computed, and for the second pass, the maximum integration error is computed. The error in position is <span class="math notranslate nohighlight">\(dr_i = 0.25dt^2(F_{t,i} - F_i) / mass\)</span>, where <span class="math notranslate nohighlight">\(F_{t,i}\)</span> is the force at the predicted location, and <span class="math notranslate nohighlight">\(F\)</span> is the force at the current location, <span class="math notranslate nohighlight">\(dr\)</span> the error in position, and <span class="math notranslate nohighlight">\(dt\)</span> the current time step. The maximum value for this is what is then used for adjusting the timestep.</p>
+<p>If the error is sufficiently small for the run, the criteria of which depend on the timestep adjustment, discussed in Section <a class="reference internal" href="#timesteps"><span class="std std-ref">Time Step Adjustments</span></a>, the site’s position and momentum are updated, where the position is set to the predicted location, corrected by <span class="math notranslate nohighlight">\(dr_i\)</span>, the momentum is set to the average momentum between the current and predicted locations.</p>
+</div>
+<div class="section" id="time-step-adjustments">
+<span id="timesteps"></span><h4>Time Step Adjustments<a class="headerlink" href="#time-step-adjustments" title="Permalink to this headline">¶</a></h4>
+<p>After the two force calculations are run, and the maximum position error is calculated, the timestep for the integration is considered for updating. If there is no positional error, the timestep is doubled, up to a set maximum, otherwise the timestep is adjusted based on the computed error. A change in the timestep is computed as <span class="math notranslate nohighlight">\({({scale}/{error})}^{exponent}\)</span>, where scale and exponent can be adjusted in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>, the defaults being a scale of <span class="math notranslate nohighlight">\(10^{-6}\)</span>Å, and exponent of 0.3. If the resulting change reduces the timestep by more than a factor of 5, then the timestep is adjusted and the force calculations are re-done for the new timestep, without updating the positions, otherwise, the timestep is updated after the positional updates. This timestep can be reduced down to a minimum specified in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>.</p>
+</div>
+<div class="section" id="logging-valid-hits">
+<span id="detector-info"></span><h4>Logging Valid Hits<a class="headerlink" href="#logging-valid-hits" title="Permalink to this headline">¶</a></h4>
+<p>After the run has terminated for one of the various exit conditions, the ion will be considered for logging. If logging errored particles is enabled in the <a class="reference internal" href="../usage/input.html#main-input"><span class="std std-ref">input file</span></a>, then the ion will be logged regardless of validity, however the energy will be set to the associated error flag. The <code class="docutils literal notranslate"><span class="pre">.dbug</span></code> file has a key as to which energy corresponds to which error flag. An additional error condition is checked here, for whether the ion is trapped. This can occur if it left the surface, but without sufficient upwards momentum to overcome the image force, and will be deposited on the surface afterwards. If the ion has left the surface, is in the detector window, or is configured to record regardless, then it will be logged to the <a class="reference internal" href="../usage/output.html#data-file"><span class="std std-ref">data file</span></a>.</p>
+</div>
+</div>
+<div class="section" id="output-files">
+<h3>Output Files<a class="headerlink" href="#output-files" title="Permalink to this headline">¶</a></h3>
+<p>SAFARI outputs the run information in a variety of text files. The main two output files are the <a class="reference internal" href="../usage/output.html#data-file"><span class="std std-ref">data file</span></a> and the <code class="docutils literal notranslate"><span class="pre">.dbug</span></code> file. If the <code class="docutils literal notranslate"><span class="pre">-o</span></code> argument is not present, then these will be named, and in the same directory as the input files, otherwise they will use the value passed in with <code class="docutils literal notranslate"><span class="pre">-o</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.dbug</span></code> file will contain information about the configuration of the run, as well as a summery of some general statistics for the error conditions. This is to be used to determine if the lattice size or other error conditions needs to be adjusted, as if a significant number are listed as froze, then it might merit an increase in maximum integration steps, and if a significant number are listed as off edge, then the size of the lattice should be increased. The <code class="docutils literal notranslate"><span class="pre">.dbug</span></code> file also includes a trimmed copy of the input file used to start the run, as well as notifications of any overrides via command line arguments.</p>
+<p>The <a class="reference internal" href="../usage/output.html#data-file"><span class="std std-ref">data file</span></a> is the primary output of detections for the run. This is a tab-delimited file, with the first line being a header to indicate what each column represents. The file format is as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">[X0]</span></code> <code class="docutils literal notranslate"><span class="pre">[Y0]</span></code> <code class="docutils literal notranslate"><span class="pre">[Zmin]</span></code> <code class="docutils literal notranslate"><span class="pre">[E]</span></code> <code class="docutils literal notranslate"><span class="pre">[THETA]</span></code> <code class="docutils literal notranslate"><span class="pre">[PHI]</span></code>
+<code class="docutils literal notranslate"><span class="pre">[ion</span> <span class="pre">index]</span></code> <code class="docutils literal notranslate"><span class="pre">[weight]</span></code> <code class="docutils literal notranslate"><span class="pre">[max</span> <span class="pre">near]</span></code> <code class="docutils literal notranslate"><span class="pre">[min</span> <span class="pre">dist]</span></code> <code class="docutils literal notranslate"><span class="pre">[steps]</span></code>
+<code class="docutils literal notranslate"><span class="pre">[Max</span> <span class="pre">Error]</span></code> <code class="docutils literal notranslate"><span class="pre">[total</span> <span class="pre">time]</span></code></p>
+<p>X0 and Y0 are the initial target locations for the ion (prior to image charge corrections, etc), Zmin is the smallest value of Z for the ion during its trajectory. E, THETA and PHI are the final conditions of the ion, where E is the kinetic energy, THETA and PHI are the outgoing angles (<span class="math notranslate nohighlight">\(\theta_{\rm{detector}}\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> in <a class="reference internal" href="#fig-geom"><span class="std std-numref">Figure 1</span></a>). The rest of the values are for use for replicating specific runs, or for debugging purposes, for example, <code class="docutils literal notranslate"><span class="pre">[steps]</span></code> can be used to determine a good number for the maximum number of integration steps for a particular input configuration.</p>
+<p>Additional output files are the <code class="docutils literal notranslate"><span class="pre">.pots</span></code> and <code class="docutils literal notranslate"><span class="pre">.crys</span></code> files, which can be used for externally provided surfaces, and for providing the potential tables for a later run. There is also a <code class="docutils literal notranslate"><span class="pre">.crys.xyz</span></code> file generated. This is a standard .xyz file representation of the lattice, for use in external visualizers.</p>
+<p>During a single shot run, an additional two files are generated, a <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file, and a <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file. The <code class="docutils literal notranslate"><span class="pre">.traj</span></code> file contains the time, position, momentum and energy of the ion at each timestep, as well as some additional information such as number of lattice sites under consideration, and positional error from the integrator at that step. This file is useful for plotting the specific trajectory of the ion, as well as determining the effecitve number of “single impacts” for the trajectory. The <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> file contains a log of the positions and momenta of the ion and each lattice site considered. If the <code class="docutils literal notranslate"><span class="pre">-r</span></code> argument is present, this will only include lattice site which are nearby the ion, otherwise it will include the entire lattice. This restriction allows for smaller total visualizations, as these files can get prohibitively large for a few thousand time steps.</p>
+</div>
+<div class="section" id="output-file-analysis">
+<h3>Output File Analysis<a class="headerlink" href="#output-file-analysis" title="Permalink to this headline">¶</a></h3>
+<p>There are three main analysis methods used on the <a class="reference internal" href="../usage/output.html#data-file"><span class="std std-ref">data file</span></a>, for
+generating Intensity vs Energy plots, Impact Parameter plots and Energy vs Theta plots. This is done via an assortment of Python scripts, for parsing the file, and then generating the plots. The first step in this process is to define a detector window for the analysis. This window includes spatial bounds (defined by the two outgoing angles) and an energy range (usually bounded by a specific minimum energy). Next the <a class="reference internal" href="../usage/output.html#data-file"><span class="std std-ref">data file</span></a> is read, and the lines are parsed for the energy, theta and phi coordinates of the outgoing trajectory. If these fit within the window of the selected detector, then the line is added to a list of detections. Once this list is populated, it is then processed to generate the desired plot.</p>
+<div class="section" id="intensity-vs-energy-plotting">
+<h4>Intensity vs Energy plotting<a class="headerlink" href="#intensity-vs-energy-plotting" title="Permalink to this headline">¶</a></h4>
+<p>For the intensity vs energy plotting, the detector is assigned a particular width for the reported energies, which represents the uncertainty in the reported energy of the detector. For each line in the list of detections, a Gaussian distribution is generated centered on the energy for that line, with minimum and maximum bounds being the lower and upper detector bounds. The width of this Gaussian is the detector width. All of the resulting Gaussian distributions are then summed and then normalized to generate the plot. A text file containing the final table is produced, along with information on the number of total Gaussian distributions summed. A sample such plot is shown in <a class="reference internal" href="#fig-sample-i-vs-e"><span class="std std-numref">Figure 2</span></a>.</p>
+<div class="figure align-default" id="fig-sample-i-vs-e">
+<a class="reference internal image-reference" href="../../_images/sample_i_vs_e.png"><img alt="Intensity vs Energy" src="../../_images/sample_i_vs_e.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 2 </span><span class="caption-text">This is a sample Intensity vs Energy plot, it contains 1589 total detections.</span><a class="headerlink" href="#fig-sample-i-vs-e" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="impact-plot-analysis">
+<h4>Impact Plot Analysis<a class="headerlink" href="#impact-plot-analysis" title="Permalink to this headline">¶</a></h4>
+<p>Impact plots are generated using the same parameters as the intensity vs energy plots, without a consideration of the energy width of the detector. A sample such plot is shown in <a class="reference internal" href="#fig-sample-impact-plot"><span class="std std-numref">Figure 3</span></a>. The impact plot is interactive, each point can be clicked on to get the specific energy and location, and via double clicking or shift clicking, various single shot runs can be done to replicate that particular point. This will generate the <code class="docutils literal notranslate"><span class="pre">.xyz</span></code> for the trajectory, and then run a smoothing algorithm on the file, to result in a consistent time step. VMD <span id="id3"><sup><a class="reference internal" href="../../index.html#id5">3</a></sup></span> will then be opened to display the resulting trajectory.</p>
+<div class="figure align-default" id="fig-sample-impact-plot">
+<a class="reference internal image-reference" href="../../_images/sample_impact_plot.png"><img alt="Sample Impact Plot" src="../../_images/sample_impact_plot.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 3 </span><span class="caption-text">This is a sample Impact Plot. It corresponds to the Intensity vs Energy plot in <a class="reference internal" href="#fig-sample-i-vs-e"><span class="std std-numref">Figure 2</span></a>. The cyan arrow indicates the direction of the incoming beam and the large green circles represent the locations of the atom in the lattice, the darker circles are the top most layer. The colour bar indicates the outgoing energy of the projectiles represented in the plot.</span><a class="headerlink" href="#fig-sample-impact-plot" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="energy-vs-theta-plotting">
+<h4>Energy vs Theta plotting<a class="headerlink" href="#energy-vs-theta-plotting" title="Permalink to this headline">¶</a></h4>
+<p>For the energy vs theta plots, the detector window is usually widened to include all values of theta under consideration. These plots are done by first splitting the range of energies and angles into 1024 bins each, for a matrix of <span class="math notranslate nohighlight">\(1024^2\)</span> total bins, and then integrating all detections into those bins. If there are no significant bins as a result, the bins are made twice as large on each axis. This is repeated until there is a significant number of detections in a bin. This final matrix is plotted as an image, as shown in <a class="reference internal" href="#fig-sample-e-vs-theta"><span class="std std-numref">Figure 4</span></a>. This image can then be further processed for generating intensity vs energy plots for each angle, for easier comparison with specific sets of data.</p>
+<div class="figure align-default" id="fig-sample-e-vs-theta">
+<a class="reference internal image-reference" href="../../_images/sample_e_vs_theta.png"><img alt="Energy vs Theta" src="../../_images/sample_e_vs_theta.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 4 </span><span class="caption-text">This is a sample Energy vs Theta Plot, the title includes the number of detections, as well as the final grid size for this matrix, in this case, only 1 resizing if the bins was required, for a final bin count of 512.</span><a class="headerlink" href="#fig-sample-e-vs-theta" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="results">
+<span id="id4"></span><h2>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<p>To verify the scattering algorithms used by SAFARI, the produced spectra were compared between the different scattering modes, and comparisons were done between simulated and experimental spectra. The comparisons with experimental data were used to choose some of the parameters for the simulation, such as error thresholds.</p>
+<div class="section" id="comparison-between-adaptive-grid-and-monte-carlo">
+<h3>Comparison between Adaptive Grid and Monte Carlo<a class="headerlink" href="#comparison-between-adaptive-grid-and-monte-carlo" title="Permalink to this headline">¶</a></h3>
+<p>The Monte Carlo and Adaptive Grid target selection algorithms are both able to replicate the primary features in experimental scattering of Alkali metals on Cu 001 surfaces, however they have differences in runtimes, and reliability replicating certain minor features.</p>
+<p>To compare these two scattering modes, several similar simulations were run. This was done to compare simulations with the same runtimes, trajectory counts, and detection counts. For these simulations, the surface was Au (001), and the projectiles were Na<sup>+</sup>, with an energy of 250eV, incident at 45 degrees along the <span class="math notranslate nohighlight">\(&lt;100&gt;\)</span> direction, the surface temperature was set to 300K. For this comparison, two Adaptive Grid and Monte Carlo configurations were used. For all cases, the target detector was a stripe of <span class="math notranslate nohighlight">\(\theta\)</span> from 0° to 90°, and <span class="math notranslate nohighlight">\(\phi\)</span> in the range of -15° to 15°. The maximum number of integration steps was set to 4000, and the crystal size was set to 5x5 primitive cells. Image charge effects were neglected, and the surface used the basic Einstein springs for cohesion.</p>
+<div class="docutils container">
+<table class="docutils align-default" id="table-sim-stats">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Simulation Statistics</span><a class="headerlink" href="#table-sim-stats" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 25%" />
+<col style="width: 8%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p><strong>Number</strong></p></th>
+<th class="head"><p><strong>Runtime</strong></p></th>
+<th class="head"><p><strong>|buried|</strong></p></th>
+<th class="head"><p><strong>|froze|</strong></p></th>
+<th class="head"><p><strong>|off edge|</strong></p></th>
+<th class="head"><p><strong>Hits</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AG1</p></td>
+<td><p><span class="math notranslate nohighlight">\(2.13\times 10^6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(4.11\times 10^3\)</span></p></td>
+<td><p>0.104</p></td>
+<td><p>0.0826</p></td>
+<td><p><span class="math notranslate nohighlight">\(7.20\times 10^{-4}\)</span></p></td>
+<td><p>0.498</p></td>
+</tr>
+<tr class="row-odd"><td><p>AG2</p></td>
+<td><p><span class="math notranslate nohighlight">\(2.27\times 10^8\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(3.80\times 10^5\)</span></p></td>
+<td><p>0.0948</p></td>
+<td><p>0.0755</p></td>
+<td><p><span class="math notranslate nohighlight">\(6.68\times 10^{-4}\)</span></p></td>
+<td><p>0.550</p></td>
+</tr>
+<tr class="row-even"><td><p>MC1</p></td>
+<td><p><span class="math notranslate nohighlight">\(2.13\times 10^6\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(5.73\times 10^3\)</span></p></td>
+<td><p>0.2013</p></td>
+<td><p>0.1626</p></td>
+<td><p><span class="math notranslate nohighlight">\(1.29\times 10^{-3}\)</span></p></td>
+<td><p>0.0230</p></td>
+</tr>
+<tr class="row-odd"><td><p>MC2</p></td>
+<td><p><span class="math notranslate nohighlight">\(4.61\times 10^7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(1.12\times 10^5\)</span></p></td>
+<td><p>0.2012</p></td>
+<td><p>0.1624</p></td>
+<td><p><span class="math notranslate nohighlight">\(1.32\times 10^{-3}\)</span></p></td>
+<td><p>0.0229</p></td>
+</tr>
+<tr class="row-even"><td><p>MC3</p></td>
+<td><p><span class="math notranslate nohighlight">\(4.61\times 10^7\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(8.37\times 10^4\)</span></p></td>
+<td><p>0.1773</p></td>
+<td><p>0.1809</p></td>
+<td><p><span class="math notranslate nohighlight">\(1.19\times 10^{-3}\)</span></p></td>
+<td><p>0.0227</p></td>
+</tr>
+</tbody>
+</table>
+<p>Summary of statistics for the various sample runs. Number is how many projectiles were fired. Runtime is in CPU Seconds. buried, froze, off edge and Hits are in fractions of the total Number of projectiles, Hits is how many were in the Detector. MC refers to the Monte Carlo runs, and AG refers to the Adaptive Grid runs.</p>
+</div>
+<p>In the first adaptive grid run (AG1 in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>), the initial grid was set to a 100x100 grid, over the first unit cell of the surface, this was allowed to bifurcate twice for each successful hit, and there were 100 thermal iterations. This run is the “Adaptive Grid (100x100)” in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>. The first Monte Carlo run (MC1 in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>) was done with a similar number of projectiles. This run is the “Same # Shot” in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>. The second Monte Carlo run (MC2 in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>) was done to result in a similar number of total detectable particles. This run is the “Same # Hit” in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>. The second Adaptive Grid run (AG1 in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>), was done at a higher initial grid resolution of 1000x1000. This run is the “Adaptive Grid (1000x1000)” in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>. Finally, a 0K Monte Carlo run was done, using the same configuration as MC2, this run is MC3 in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>, and is “0K” in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>. A summary of the statistics for these runs can be found in <a class="reference internal" href="#table-sim-stats"><span class="std std-numref">Table 4</span></a>.</p>
+<p>Comparing the first two runs, there is a noticeable difference between efficiencies of Adaptive Grid and Monte Carlo when it comes to getting particles into the detector, for the same number of incident particles, the Adaptive Grid resulted in a 21 fold increase in detectable particles, and took about 70% of the time to do so. The reduction in runtime is mostly due to the decreased number of particles flagged as buried and froze, as these cases usually spend a while with the particle rattling around inside the lattice, not really going anywhere.</p>
+<p>Comparing the results of the second two runs to the first, as is done in <a class="reference internal" href="#fig-mcvsag"><span class="std std-numref">Figure 5</span></a>, shows that the simulations all agree on the primary spectral features, however there is disagreement in the lower probability/energy trajectories from the Adaptive Grid runs. Both Monte Carlo simulations result in the same behaviour, with the larger one being generally less noisy in the lower probability areas. The finer Adaptive Grid run does match some of the lower probability areas more closely to the Monte Carlo, however still entirely misses the large low energy peak. Impact plot analysis of the Monte Carlo runs indicates that these low energy trajectories are randomly positioned on the surface, and are ones which rattle around in the surface for a while before escaping at very low energies in a somewhat random direction. Since Adaptive Grid works by focusing on areas of the surface which are correlated with higher chances of trajectories resulting in a detection, it is unable to properly account for these randomly located impacts. These randomly distributed, low energy impacts can be seen as the purple areas in <a class="reference internal" href="#fig-mcvsag-imps"><span class="std std-numref">Figure 6</span></a>.</p>
+<div class="figure align-default" id="fig-mcvsag">
+<a class="reference internal image-reference" href="../../_images/MCvsAG.png"><img alt="Monte Carlo vs Adaptive Grid" src="../../_images/MCvsAG.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 5 </span><span class="caption-text">Intensity vs Energy plots for a 15 wide detector, positioned at <span class="math notranslate nohighlight">\(\theta = 45^{\circ}\)</span></span><a class="headerlink" href="#fig-mcvsag" title="Permalink to this image">¶</a></p>
+</div>
+<p>Further analysis was done on this low energy structure, and it was compared across a range of outgoing angles, this is shown in <a class="reference internal" href="#fig-lowenergypeaksthetas"><span class="std std-numref">Figure 7</span></a>. This shows a similar distribution to that of sputtered particles <span id="id5"><sup><a class="reference internal" href="../../index.html#id6">4</a></sup></span>, which indicates that these are trajectories which have lost memory of their initial conditions, and further explains why the Adaptive Grid was unable to properly replicate this structure.</p>
+<div class="figure align-default" id="fig-mcvsag-imps">
+<a class="reference internal image-reference" href="../../_images/fig_MCvsAG_imps.png"><img alt="Monte Carlo vs Adaptive Grid Impacts" src="../../_images/fig_MCvsAG_imps.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 6 </span><span class="caption-text">A Comparison of impact plots for Mone Carlo (a) vs Adaptive Grid (b)</span><a class="headerlink" href="#fig-mcvsag-imps" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="fig-lowenergypeaksthetas">
+<a class="reference internal image-reference" href="../../_images/low_energy_peak_i_vs_theta.png"><img alt="Low Energy Peaks" src="../../_images/low_energy_peak_i_vs_theta.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 7 </span><span class="caption-text">Plots of the outgoing intensity of the low energy peak, with respect to the outgoing angle, and the cosine of that angle.</span><a class="headerlink" href="#fig-lowenergypeaksthetas" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="simulation-vs-data">
+<h3>Simulation vs Data<a class="headerlink" href="#simulation-vs-data" title="Permalink to this headline">¶</a></h3>
+<p>SAFARI is intended for assisting with analysis of scattered spectra, and as such, was compared to an assortment of experimental data. Here we will present two comparisons, one being Energy vs Theta plots compared with the data published by DiRubio et al <span id="id6"><sup><a class="reference internal" href="../../index.html#id4">5</a></sup></span>, and the other comparing Intensity vs Energy plots with the Na on Cu data shown in our previous paper <span id="id7"><sup><a class="reference internal" href="../../index.html#id3">2</a></sup></span>.</p>
+<div class="figure align-default" id="fig-img-vs-noimg">
+<a class="reference internal image-reference" href="../../_images/fig_img_vs_noimg.png"><img alt="Img vs No Img" src="../../_images/fig_img_vs_noimg.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 8 </span><span class="caption-text">An example of adjusting the Image charge parameters to match the experimental results.</span><a class="headerlink" href="#fig-img-vs-noimg" title="Permalink to this image">¶</a></p>
+</div>
+<p>To verify whether the image charge effects were properly accounted for, we compared the results of SAFARI with the data presented by DiRubio et al <span id="id8"><sup><a class="reference internal" href="../../index.html#id4">5</a></sup></span>. The data was for hyperthermal <span class="math notranslate nohighlight">\(Na^+\)</span> scattered from Cu(001), with an incident angle of 45°, and the sample was cooled to between 121 and 141K. <a class="reference internal" href="#fig-img-vs-noimg"><span class="std std-numref">Figure 8</span></a>(a) and (b) show the results of comparing 0K SAFARI runs with the data. The main parts of the loops shown are not strongly temperature dependant, so the 0K runs can be used to adjust the image parameters. <a class="reference internal" href="#fig-img-vs-noimg"><span class="std std-numref">Figure 8</span></a>(c) shows the results at 123K, which matches the temperature dependant behaviour at higher outgoing angles.</p>
+<div class="figure align-default" id="fig-esa-fitting">
+<a class="reference internal image-reference" href="../../_images/fig_esa_fitting.png"><img alt="Fitting Widths" src="../../_images/fig_esa_fitting.png" style="width: 100.0%;" /></a>
+<p class="caption"><span class="caption-number">Figure 9 </span><span class="caption-text">An example of adjusting the analysis energy widths</span><a class="headerlink" href="#fig-esa-fitting" title="Permalink to this image">¶</a></p>
+</div>
+<p>Once the image parameters have been determined via the energy vs theta plotting, then the intensity vs energy plots can be used to replicate the spectra from the experimental data. An example of this process is shown in <a class="reference internal" href="#fig-esa-fitting"><span class="std std-numref">Figure 9</span></a>. In this example, the experimental data was collected from a 254.6 eV beam of <span class="math notranslate nohighlight">\(Na^+\)</span>, incident on a Cu(001) surface, at 45°. The surface in this case was at a temperature of approximately 340K, and the beam had a Gaussian profile with a standard deviation of 2.0eV. <a class="reference internal" href="#fig-esa-fitting"><span class="std std-numref">Figure 9</span></a>(a) shows the result of comparing simulation data with the same Gaussian binning width as the data, and <a class="reference internal" href="#fig-esa-fitting"><span class="std std-numref">Figure 9</span></a>(b) shows using a 5eV width instead. The simulation uses a mono-energetic beam, whereas the actual experiment has a beam with a Gaussian profile. This results in requiring a larger binning of the simulated spectra to replicate the experimental peak widths and heights.</p>
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><h3><a href="../../index.html">Global Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">SAFARI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Theory behind SAFARI</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/building.html">Building SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Running SAFARI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/input.html">SAFARI Sample Input Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/output.html">SAFARI Sample Output Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/analysis.html">SAFARI Output Analysis</a></li>
+</ul>
+
+  <h3><a href="../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Theory behind SAFARI</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#methods">Methods</a><ul>
+<li><a class="reference internal" href="#input-files-and-arguments">Input Files and Arguments</a></li>
+<li><a class="reference internal" href="#lattice-and-lattice-generation">Lattice and Lattice Generation</a><ul>
+<li><a class="reference internal" href="#generating-from-provided-basis">Generating from provided basis</a></li>
+<li><a class="reference internal" href="#generating-from-external-file">Generating from external file</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#surface-thermalization">Surface Thermalization</a></li>
+<li><a class="reference internal" href="#target-location-selection">Target Location Selection</a></li>
+<li><a class="reference internal" href="#trajectory-algorithm">Trajectory Algorithm</a><ul>
+<li><a class="reference internal" href="#finding-nearest-atoms-to-ion">Finding nearest atoms to ion</a></li>
+<li><a class="reference internal" href="#error-checks-and-thresholds">Error Checks and Thresholds</a></li>
+<li><a class="reference internal" href="#equations-of-motion">Equations of Motion</a></li>
+<li><a class="reference internal" href="#time-step-adjustments">Time Step Adjustments</a></li>
+<li><a class="reference internal" href="#logging-valid-hits">Logging Valid Hits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#output-files">Output Files</a></li>
+<li><a class="reference internal" href="#output-file-analysis">Output File Analysis</a><ul>
+<li><a class="reference internal" href="#intensity-vs-energy-plotting">Intensity vs Energy plotting</a></li>
+<li><a class="reference internal" href="#impact-plot-analysis">Impact Plot Analysis</a></li>
+<li><a class="reference internal" href="#energy-vs-theta-plotting">Energy vs Theta plotting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#results">Results</a><ul>
+<li><a class="reference internal" href="#comparison-between-adaptive-grid-and-monte-carlo">Comparison between Adaptive Grid and Monte Carlo</a></li>
+<li><a class="reference internal" href="#simulation-vs-data">Simulation vs Data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter">SAFARI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../usage/building.html"
+                        title="next chapter">Building SAFARI</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../usage/building.html" title="Building SAFARI"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="SAFARI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SAFARI 2.0.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Theory behind SAFARI</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Patrick Johnson.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>
