@@ -175,6 +175,6 @@ If you double right click instead, then it will colour the particles in VMD such
 If you shift-right click the atom, it will colour the sites such that any with more than 0.05eV of kinetic energy are highlighted.
 
 .. |SAFARI Github| replace:: |SAFARI| Github
-.. _SAFARI Github: https://github.com/SINS-Lab/SEA-SAFARI/tree/master/analysis
+.. _SAFARI Github: https://github.com/SINS-Lab/SAFARI-ANALYSIS
 
 .. include:: ../../.shared.rst
