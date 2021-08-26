@@ -25,6 +25,63 @@ If there are any issues with building, you might need to modify the ``CXXFLAGS``
 
 |SAFARI| is written using features of C++11, so at least that or higher is required, but otherwise only relies on the standard Libraries in C++11 and OpenMP, so no other dependancies are required to build.
 
+Instructions for Setup and use on WSL in Windows 10
+###################################################
+
+A convienient way to run SAFARI on Windows is using the Windows Subsystem for Linux (WSL). These instructions are for use with Ubuntu, as it has a relatively simple installation process on Windows 10.
+
+Step 1: Install Linux on Windows 10
+***********************************
+
+For using Ubuntu, this is fairly simple, you can locate the Ubuntu App in the Microsoft Store, and install from there. You also need to enable the WSL, instructions for this should be on the Ubuntu App page. This process may require a Windows reboot. You should launch it via the Ubuntu App's store page to do the initial setup.
+
+Once this setup has finished, run the following commands from the Ubuntu App to ensure things are updated:
+
+.. code:: Bash
+
+    sudo apt update
+    sudo apt upgrade
+
+Next, run the following commands to install g++ and make
+
+.. code:: Bash
+
+    sudo apt install g++ make
+
+Step 2: Download and Setup for SAFARI
+*************************************
+
+Once WSL is enabled, and a Lunix distribution is installed, open it to the directory where you want to setup your SAFARI installation. This can be done via either the ``wsl`` command in one of the windows terminals, or via shift right clicking in the required directory, and then clicking ``Open Lunix shell here``
+
+In the Linux shell, run the following commands to download the SEA-SAFARI and SAFARI-ANALYSIS repositories.
+
+.. code:: Bash
+
+    git clone https://github.com/SINS-Lab/SEA-SAFARI.git SAFARI
+    git clone https://github.com/SINS-Lab/SAFARI-ANALYSIS.git SAFARI-ANALYSIS
+
+Next, try making SAFARI:
+
+.. code:: Bash
+
+    cd SAFARI
+    make
+
+Once that successfully finishes, copy the ``Sea-Safari`` executable from ``/SAFARI/bin/Release/``, and the ``XYZ`` executable from ``/SAFARI/utility_scripts/`` to ``/SAFARI-ANALYSIS/``
+
+.. code:: Bash
+
+    cd ..
+    cp ./SAFARI/bin/Release/Sea-Safari ./SAFARI-ANALYSIS/Sea-Safari
+    cp ./SAFARI/utility_scripts/XYZ ./SAFARI-ANALYSIS/XYZ
+
+Now, try running the test runs for SAFARI.
+
+.. code:: Bash
+
+    cd SAFARI/bin/Release
+    ./test_sample.py
+
 Multithreading Considerations
 #############################
 
