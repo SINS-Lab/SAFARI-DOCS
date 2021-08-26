@@ -51,7 +51,7 @@ Next, run the following commands to install g++ and make
 Step 2: Download and Setup for SAFARI
 *************************************
 
-Once WSL is enabled, and a Lunix distribution is installed, open it to the directory where you want to setup your SAFARI installation. This can be done via either the ``wsl`` command in one of the windows terminals, or via shift right clicking in the required directory, and then clicking ``Open Lunix shell here``
+Once WSL is enabled, and a Linux distribution is installed, open it to the directory where you want to setup your SAFARI installation. This can be done via either the ``wsl`` command in one of the windows terminals, or via shift right clicking in the required directory, and then clicking ``Open Linux shell here``
 
 In the Linux shell, run the following commands to download the SEA-SAFARI and SAFARI-ANALYSIS repositories.
 
